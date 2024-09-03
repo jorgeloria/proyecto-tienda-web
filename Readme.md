@@ -1,6 +1,11 @@
 Grupo 04
 Web
 
+Andres
+Fray
+Grillo
+Jorge
+
 Guía
 
 https://dev.to/techcheck/creating-a-react-node-and-express-app-1ieg
