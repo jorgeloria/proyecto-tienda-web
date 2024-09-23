@@ -42,7 +42,7 @@ const Footer = () => {
           </a>
           <a
             href="https://google.com"
-            className=" bg-Card_color p-4 rounded-md text-white transition-colors duration-300 hover:bg-Primary_color"
+            className=" bg-Card_color p-4 rounded-md text-white transition-colors duration-300 hover:bg-Secundary_color"
             target="_blank"
           >
             <box-icon name="instagram" type="logo" color="#ffffff"></box-icon>
