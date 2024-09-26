@@ -2,7 +2,7 @@ import React from "react";
 
 function Card({ name, image, price }) {
   return (
-    <div className="card rounded-md bg-Card_color w-[250px] h-[355px] shadow-xl hover:text-Secundary_color">
+    <div className="card rounded-md bg-Card_color w-auto h-auto md:w-[250px] md:h-[355px] shadow-xl hover:text-Secundary_color">
       <figure className="px-8 pt-4">
         <img src={`${image}`} alt={name} className="rounded-md" />
       </figure>
