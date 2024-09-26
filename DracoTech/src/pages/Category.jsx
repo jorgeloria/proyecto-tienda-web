@@ -12,22 +12,20 @@ const Category = () => {
   return (
     <div>
       <div className="flex justify-center py-20">
-        <div className="block md:flex lg:flex flex-row items-start space-x-8 ">
+        <div className="block md:flex md:flex-row md:items-start md:space-x-6 lg:space-x-8">
           <Filters />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-8 gap-x-10 ">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-8 gap-x-10">
             {cardsData.map((card, index) => (
               <Card
                 key={index}
                 name={card.name}
                 image={card.image}
                 price={card.price}
-                onClick
               />
             ))}
           </div>
         </div>
       </div>
-      
     </div>
   );
 };

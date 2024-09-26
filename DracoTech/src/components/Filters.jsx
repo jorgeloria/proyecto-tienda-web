@@ -8,7 +8,7 @@ const Filters = () => {
   const toggleAmd = () => setIsAmdOpen(!isAmdOpen);
 
   return (
-    <aside className="bg-Card_color text-white w-[300px] p-4 rounded-md shadow-lg mb-10">
+    <aside className="bg-Card_color text-white md:w-[250px] lg:w-[300px] p-4 rounded-md shadow-lg mb-10">
       <h1 className="text-center text-2xl font-bold mb-4">Tarjetas Gráficas</h1>
       <div className="mb-6">
         <div
