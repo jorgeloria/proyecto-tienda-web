@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+div {
+  outline: solid;
+  outline-color: white;
+  outline-width: 1px;
+}
