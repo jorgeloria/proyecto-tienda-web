@@ -1,9 +1,9 @@
 
 .loginMain{
     position: relative;
-    margin-top: 10%;
-    margin-left: 25%;
-    margin-bottom: 20%;
+    margin-top: 5%;
+    margin-left: 20%;
+    margin-bottom: 10%;
     width: 60%;
 }
 
@@ -17,7 +17,7 @@
     
 .inicioSesionHead {
     font-family: 'Cinzel', serif;
-    padding-left: 20%;
+    padding-left: 35%;
     padding-bottom: 15%;
     font-size: 36px;
 }

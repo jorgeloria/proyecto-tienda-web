@@ -20,7 +20,7 @@ const LoginForm = () => {
                     <input className={styles.campo} type="text" ></input>
                 </div>
                 <div className="row">
-                    <label htmlFor="password">Password</label>
+                    <label htmlFor="password">Contraseña</label>
                 </div>
                 <div className="row">
                     <input className={styles.campo} type="password" ></input>
