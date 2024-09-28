@@ -1,12 +1,14 @@
 import React from 'react';
 
-import SignUpBox from "../components/SignUpBox/SignUpBox"
+
+import LoginComponent from "../components/LoginComponent/LoginComponent"
 
 const Login = () => {
   return (
     <div>
-      <h1>Unlimited free access to our products</h1>
-      <SignUpBox />
+      <div className='main' >
+        <LoginComponent />
+      </div>
     </div>
   );
 };
