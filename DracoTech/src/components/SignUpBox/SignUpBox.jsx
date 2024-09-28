@@ -11,7 +11,7 @@ const handleGoogleClick = () => {
 
 const SignUpWithBox = () => {
     return (
-    <div className="grid grid-cols-1 gap-6" >
+    <div className="grid grid-cols-1 gap-y-10" >
         <div className="row" >
             <h2 className={styles.h2} >SSO</h2>
         </div>
