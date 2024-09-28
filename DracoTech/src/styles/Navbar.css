@@ -2,8 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
-div {
+/* div,
+li,
+a,
+span {
   outline: solid;
   outline-color: white;
   outline-width: 1px;
+}
+
+li {
+  outline-color:cornflowerblue;
+  background-color: rgba(100, 148, 237, 0.308);
+}
+
+a {
+  outline-color: rgba(255, 127, 80, 0.685);
+}
+
+span {
+  outline-color: rgba(128, 255, 0, 0.521);
+} */
+
+@media (max-width: 810px) {
+  .navbar-categories {
+    display: none;
+  }
+
 }
