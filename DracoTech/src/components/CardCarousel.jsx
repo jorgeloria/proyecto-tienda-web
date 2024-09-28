@@ -1,18 +1,16 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-
-import "swiper/css";
+import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 
 import Card from "./Card";
 
+import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
-
 import "../styles/CardCarousel.css";
 
-export default ({ CardData }) => {
+function CardCarousel({ CardData }) {
   return (
     <Swiper
       modules={[Navigation, Pagination, Scrollbar, A11y]}
@@ -43,4 +41,6 @@ export default ({ CardData }) => {
       ))}
     </Swiper>
   );
-};
+}
+
+export default CardCarousel;
