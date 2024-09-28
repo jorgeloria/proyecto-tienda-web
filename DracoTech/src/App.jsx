@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import Category from './pages/Category';
 import ShoppingCart from './pages/ShoppingCart';
 import Product from './pages/Product';
+import SignUp from './pages/SignUp';
 
 function App() {
   return (
@@ -15,7 +16,11 @@ function App() {
         <Route path="/Login" element={<Login />} />
         <Route path="/Category" element={<Category />} />
         <Route path="/ShoppingCart" element={<ShoppingCart />} />
+<<<<<<< HEAD
         <Route path="/Product" element={<Product />} />
+=======
+        <Route path="/SignUp" element={<SignUp />} />
+>>>>>>> 283e5cb (added initial sign up page)
       </Route>
     </Routes>
   );

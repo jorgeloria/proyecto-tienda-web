@@ -13,6 +13,7 @@ const Navbar = () => {
           <Link to="/Login" className="btn btn-ghost">Login</Link>
           <Link to="/Category" className="btn btn-ghost">Category</Link>
           <Link to="/ShoppingCart" className="btn btn-ghost">ShoppingCart</Link>
+          <Link to="/SignUp" className="btn btn-ghost">Sign Up</Link>
         </div>
         <div className="dropdown dropdown-end">
           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
