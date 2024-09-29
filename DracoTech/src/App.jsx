@@ -16,11 +16,8 @@ function App() {
         <Route path="/Login" element={<Login />} />
         <Route path="/Category" element={<Category />} />
         <Route path="/ShoppingCart" element={<ShoppingCart />} />
-<<<<<<< HEAD
         <Route path="/Product" element={<Product />} />
-=======
         <Route path="/SignUp" element={<SignUp />} />
->>>>>>> 283e5cb (added initial sign up page)
       </Route>
     </Routes>
   );
