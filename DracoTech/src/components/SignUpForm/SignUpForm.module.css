@@ -1,0 +1,19 @@
+/* .styles{
+    color: #FFFFFF;
+    background-color: #666;
+} */
+
+.form {
+    padding-left: 3em;
+}
+
+.h2 {
+    font-size: 2em;
+}
+
+.campo {
+    background-color: #444444;
+    height: 2.5em;
+    border-radius: 4px;
+    width: 100%;
+}

@@ -3,13 +3,13 @@ import React from "react";
 
 import Button from '../Button/Button';
 
-import styles from './SignUpBox.module.css'
+import styles from './SignInWithBox.module.css'
 
 const handleGoogleClick = () => {
     alert('google clicked')
 }
 
-const SignUpWithBox = () => {
+const SignInWithBox = () => {
     return (
     <div className="grid grid-cols-1 gap-y-10" >
         <div className="row" >
@@ -38,4 +38,4 @@ const SignUpWithBox = () => {
   };
 
 
-export default SignUpWithBox
+export default SignInWithBox
