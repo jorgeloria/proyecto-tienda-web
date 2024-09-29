@@ -11,10 +11,17 @@ const TextBox = ({ text }) => {
   );
 };
 
-function TitledCardCarousel({ Title, CardData }) {
+function TitledCardCarousel({ Title, CardData, Link = "" }) {
   return (
     <div className="titled-card-carousel">
-      <TextBox text={Title} />
+      {/*Si se recibión un link, el título será clickeable */}
+      {Link.localeCompare("") === 0 ? (
+        <TextBox text={Title} />
+      ) : (
+        <a href={Link}>
+          <TextBox text={Title} />
+        </a>
+      )}
       <CardCarousel CardData={CardData} />
     </div>
   );
