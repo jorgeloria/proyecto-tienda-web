@@ -1,13 +1,13 @@
-
-.swiper-wrapper {
+.titled-card-carousel .swiper-wrapper {
   margin-right: 120px;
 }
 
-.swiper-horizontal {
+.titled-card-carousel .swiper-horizontal {
   padding-left: 60px;
 }
 
-.corusel-title-text-box {
+
+.titled-card-carousel .corusel-title-text-box {
   border: 3px solid white;  /* Border for the rectangle */
   margin-bottom: 1%;
   padding-top: 1%;
@@ -17,9 +17,10 @@
   overflow-wrap: break-word; /* Ensures text wraps within the box */
   background-color: transparent; /* Light background color */
   /* //TODO(Fray): Cambiar el tipo de fuente */
-  font-family: Arial, sans-serif, ; /* Set font for the text */
+  font-family: Red-Hat-Display, Arial, sans-serif, ; /* Set font for the text */
 }
 
 .titled-card-carousel {
-  margin-top: 1%;
+  margin-top: 2%;
+  margin-bottom: 2%;
 }
