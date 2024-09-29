@@ -1,20 +1,21 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 
-import Card from "./Card";
+import Card from "../Card";
 
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 
-import "../styles/CardCarousel.css";
+import "../../styles/CardCarousel.css";
 
 function CardCarousel({ CardData }) {
   return (
     <Swiper
       modules={[Navigation, Pagination, Scrollbar, A11y]}
       spaceBetween={60}
+      /* //TODO(Fray): Ajustar número de slides */
       slidesPerView={4}
       navigation={true}
       onSlideChange={() => console.log("slide change")}
@@ -35,9 +36,11 @@ function CardCarousel({ CardData }) {
       */
     >
       {CardData.map((card, index) => (
-        <SwiperSlide key={index}>
-          <Card name={card.name} image={card.image} price={card.price} />
-        </SwiperSlide>
+        <div className=".card-carousel">
+          <SwiperSlide key={index}>
+            <Card name={card.name} image={card.image} price={card.price} />
+          </SwiperSlide>
+        </div>
       ))}
     </Swiper>
   );

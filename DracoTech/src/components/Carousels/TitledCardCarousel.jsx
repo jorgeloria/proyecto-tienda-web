@@ -2,8 +2,7 @@ import React from "react";
 
 import CardCarousel from "./CardCarousel";
 
-import "../styles/CardCarousel.css";
-
+/* //TODO(Fray): Agregar link para la sección */
 const TextBox = ({ text }) => {
   return (
     <div className="corusel-title-text-box">
