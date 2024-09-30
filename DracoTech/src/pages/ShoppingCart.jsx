@@ -1,5 +1,4 @@
 import React from 'react';
-import "../styles/ShoppingCart.css"
 
 import Monitor from "/src/images/Monitor.png"
 
