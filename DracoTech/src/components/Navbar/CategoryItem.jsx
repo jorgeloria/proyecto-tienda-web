@@ -1,12 +1,14 @@
-const CategoryItem = ({categoryName, subCategories}) => {
+import Link from "react-router-dom";
+
+const CategoryItem = ({categoryName, subCategories, link}) => {
   return(
     <li className="">
-    <a className="dropdown dropdown-hover dropdown-bottom">
+    <Link to={link} className="dropdown dropdown-hover dropdown-bottom red-hat-display-category">
       <strong className="hover:text-Primary_color">{categoryName}</strong>
-      <ul className="dropdown-content menu bg-Footer_color w-52">
+      <ul className="dropdown-content menu bg-Footer_color w-52 z-20">
         {subCategories}
       </ul>
-    </a>
+    </Link>
   </li>
   );
 }
