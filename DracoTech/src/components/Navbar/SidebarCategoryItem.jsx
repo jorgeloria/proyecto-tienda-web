@@ -1,8 +1,10 @@
-const SidebarCategoryItem = ({categoryName, subCategories}) => {
+import { Link } from "react-router-dom";
+
+const SidebarCategoryItem = ({categoryName, link, subCategories}) => {
   return(
   <li className="my-2">
     <details>
-      <summary><a href="">{categoryName}</a></summary>
+      <summary><Link to={link}>{categoryName}</Link></summary>
       <ul className="p-2 [&>*]:my-3">
         {subCategories}
       </ul>

@@ -1,6 +1,8 @@
-const SubCategoryItem = ({subCategoryName}) => {
+import {Link} from "react-router-dom";
+
+const SubCategoryItem = ({subCategoryName, link}) => {
   return(
-    <li><a href="">{subCategoryName}</a></li>
+    <li><Link to={link} className="red-hat-display-subcategory bg-Black:200">{subCategoryName}</Link></li>
   );
 }
 
