@@ -2,6 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+.red-hat-display-category {
+  font-family: "Red Hat Display", system-ui;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.red-hat-display-subcategory {
+  font-family: "Red Hat Display", system-ui;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+
+
 /* div,
 li,
 a,
