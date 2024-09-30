@@ -39,61 +39,61 @@ const Navbar = () => {
             <ul className="navbar-category-list menu menu-horizontal invisible lg:visible flex lg:justify-evenly">
               <CategoryItem categoryName={"LAPTOPS"} link={"/Category"}
                 subCategories={[
-                  <SubCategoryItem subCategoryName={"Laptops Nuevas"} />,
-                  <SubCategoryItem subCategoryName={"Laptops Usadas"} />
+                  <SubCategoryItem subCategoryName={"Laptops Nuevas"} link={"/Category"}/>,
+                  <SubCategoryItem subCategoryName={"Laptops Usadas"}  link={"/Category"}/>
                 ]}
               />
               <CategoryItem categoryName={"COMPUTADORAS"} link={"/Category"}
                 subCategories={[
-                  <SubCategoryItem subCategoryName={"Hogas / Oficina"} />,
-                  <SubCategoryItem subCategoryName={"Gaming"} />
+                  <SubCategoryItem subCategoryName={"Hogas / Oficina"}  link={"/Category"}/>,
+                  <SubCategoryItem subCategoryName={"Gaming"}  link={"/Category"}/>
                 ]}
               />
               <CategoryItem categoryName={"COMPONENTES"} link={"/Category"}
                 subCategories={[
-                  <SubCategoryItem subCategoryName={"Procesadores"} />,
-                  <SubCategoryItem subCategoryName={"Tarjetas Madre"} />,
-                  <SubCategoryItem subCategoryName={"RAM"} />,
-                  <SubCategoryItem subCategoryName={"Tarjetas Gráficas"} />,
-                  <SubCategoryItem subCategoryName={"Almacenamiento"} />,
-                  <SubCategoryItem subCategoryName={"Torres"} />,
-                  <SubCategoryItem subCategoryName={"PSUs"} />,
-                  <SubCategoryItem subCategoryName={"Enfriamiento"} />,
+                  <SubCategoryItem subCategoryName={"Procesadores"}  link={"/Category"}/>,
+                  <SubCategoryItem subCategoryName={"Tarjetas Madre"}  link={"/Category"}/>,
+                  <SubCategoryItem subCategoryName={"RAM"}  link={"/Category"}/>,
+                  <SubCategoryItem subCategoryName={"Tarjetas Gráficas"}  link={"/Category"}/>,
+                  <SubCategoryItem subCategoryName={"Almacenamiento"}  link={"/Category"}/>,
+                  <SubCategoryItem subCategoryName={"Torres"}  link={"/Category"}/>,
+                  <SubCategoryItem subCategoryName={"PSUs"}  link={"/Category"}/>,
+                  <SubCategoryItem subCategoryName={"Enfriamiento"}  link={"/Category"}/>,
                 ]}
               />
               <CategoryItem categoryName={"PERIFERICOS"} link={"/Category"}
                 subCategories={[
-                  <SubCategoryItem subCategoryName={"Teclados"} />,
-                  <SubCategoryItem subCategoryName={"Mouse"} />,
-                  <SubCategoryItem subCategoryName={"Headset"} />,
-                  <SubCategoryItem subCategoryName={"Parlantes"} />,
-                  <SubCategoryItem subCategoryName={"Micrófonos"} />,
+                  <SubCategoryItem subCategoryName={"Teclados"}  link={"/Category"}/>,
+                  <SubCategoryItem subCategoryName={"Mouse"}  link={"/Category"}/>,
+                  <SubCategoryItem subCategoryName={"Headset"}  link={"/Category"}/>,
+                  <SubCategoryItem subCategoryName={"Parlantes"}  link={"/Category"}/>,
+                  <SubCategoryItem subCategoryName={"Micrófonos"}  link={"/Category"}/>,
                 ]}
               />
               <CategoryItem categoryName={"CELULARES"} link={"/Category"}
                 subCategories={[
-                  <SubCategoryItem subCategoryName={"Celulares Nuevos"} />,
-                  <SubCategoryItem subCategoryName={"Celulares Usados"} />,
+                  <SubCategoryItem subCategoryName={"Celulares Nuevos"}  link={"/Category"}/>,
+                  <SubCategoryItem subCategoryName={"Celulares Usados"}  link={"/Category"}/>,
                 ]}
               />
               <CategoryItem categoryName={"TABLETS"} link={"/Category"}
                 subCategories={[
-                  <SubCategoryItem subCategoryName={"Tablets Nuevas"} />,
-                  <SubCategoryItem subCategoryName={"Tablets Usadas"} />,
+                  <SubCategoryItem subCategoryName={"Tablets Nuevas"}  link={"/Category"}/>,
+                  <SubCategoryItem subCategoryName={"Tablets Usadas"}  link={"/Category"}/>,
                 ]}
               />
               <CategoryItem categoryName={"ACCESORIOS"} link={"/Category"}
                 subCategories={[
-                  <SubCategoryItem subCategoryName={"Cables"} />,
-                  <SubCategoryItem subCategoryName={"Adaptadores"} />,
-                  <SubCategoryItem subCategoryName={"Extensiones"} />,
-                  <SubCategoryItem subCategoryName={"Redes"} />,
+                  <SubCategoryItem subCategoryName={"Cables"}  link={"/Category"}/>,
+                  <SubCategoryItem subCategoryName={"Adaptadores"}  link={"/Category"}/>,
+                  <SubCategoryItem subCategoryName={"Extensiones"}  link={"/Category"}/>,
+                  <SubCategoryItem subCategoryName={"Redes"}  link={"/Category"}/>,
                 ]}
               />
               <CategoryItem categoryName={"CONSOLAS"} link={"/Category"}
                 subCategories={[
-                  <SubCategoryItem subCategoryName={"Consolas Nuevas"} />,
-                  <SubCategoryItem subCategoryName={"Consolas Usadas"} />,
+                  <SubCategoryItem subCategoryName={"Consolas Nuevas"}  link={"/Category"}/>,
+                  <SubCategoryItem subCategoryName={"Consolas Usadas"}  link={"/Category"}/>,
                 ]}
               />
             </ul>
@@ -114,22 +114,23 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      <div className="drawer-side">
+      {/* Drawer side (responsive) */}
+      <div className="drawer-side z-20">
         <label htmlFor="navbar-mobile-menu" aria-label="close sidebar" className="drawer-overlay"></label>
         <ul className="menu bg-Footer_color min-h-full w-60 p-4">
-          <SidebarCategoryItem categoryName={"LAPTOPS"}
+          <SidebarCategoryItem categoryName={"LAPTOPS"} link={"/Category"}
             subCategories={[
               <SubCategoryItem subCategoryName={"Laptops Nuevas"}/>,
               <SubCategoryItem subCategoryName={"Laptops Usadas"}/>
             ]}
           />
-          <SidebarCategoryItem categoryName={"COMPUTADORAS"}
+          <SidebarCategoryItem categoryName={"COMPUTADORAS"} link={"/Category"}
             subCategories={[
               <SubCategoryItem subCategoryName={"Hogar / Oficina"}/>,
               <SubCategoryItem subCategoryName={"Gaming"}/>,
             ]}
           />
-          <SidebarCategoryItem categoryName={"COMPONENTES"}
+          <SidebarCategoryItem categoryName={"COMPONENTES"} link={"/Category"}
             subCategories={[
               <SubCategoryItem subCategoryName={"Procesadores"}/>,
               <SubCategoryItem subCategoryName={"Tarjetas Madre"}/>,
@@ -141,7 +142,7 @@ const Navbar = () => {
               <SubCategoryItem subCategoryName={"Enfriamiento"}/>,
             ]}
           />
-          <SidebarCategoryItem categoryName={"PERIFÉRICOS"}
+          <SidebarCategoryItem categoryName={"PERIFÉRICOS"} link={"/Category"}
             subCategories={[
               <SubCategoryItem subCategoryName={"Teclados"}/>,
               <SubCategoryItem subCategoryName={"Mouse"}/>,
@@ -150,19 +151,19 @@ const Navbar = () => {
               <SubCategoryItem subCategoryName={"Micrófonos"}/>,
             ]}
           />
-          <SidebarCategoryItem categoryName={"CELULARES"}
+          <SidebarCategoryItem categoryName={"CELULARES"} link={"/Category"}
             subCategories={[
               <SubCategoryItem subCategoryName={"Celulares Nuevos"}/>,
               <SubCategoryItem subCategoryName={"Celulares Usados"}/>,
             ]}
           />
-          <SidebarCategoryItem categoryName={"TABLETS"}
+          <SidebarCategoryItem categoryName={"TABLETS"} link={"/Category"}
             subCategories={[
               <SubCategoryItem subCategoryName={"Tablets Nuevas"}/>,
               <SubCategoryItem subCategoryName={"Tablets Usadas"}/>,
             ]}
           />
-          <SidebarCategoryItem categoryName={"ACCESORIOS"}
+          <SidebarCategoryItem categoryName={"ACCESORIOS"} link={"/Category"}
             subCategories={[
               <SubCategoryItem subCategoryName={"Cables"}/>,
               <SubCategoryItem subCategoryName={"Adaptadores"}/>,
@@ -170,7 +171,7 @@ const Navbar = () => {
               <SubCategoryItem subCategoryName={"Redes"}/>,
             ]}
           />
-          <SidebarCategoryItem categoryName={"CONSOLAS"}
+          <SidebarCategoryItem categoryName={"CONSOLAS"} link={"/Category"}
             subCategories={[
               <SubCategoryItem subCategoryName={"Consolas Nuevas"}/>,
               <SubCategoryItem subCategoryName={"Consolas Usadas"}/>,
