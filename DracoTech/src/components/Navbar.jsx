@@ -29,25 +29,27 @@ const Navbar = () => {
             </svg>
           </label>
           {/* Navbar Logo */}
-          <div className="w-16 mx-5 rounded" role="button">
-              <img src="/src/images/logo_primary_color-transparent.png" alt=""/>
-          </div>
+            <div className="w-16 mx-5 rounded" role="button">
+            <Link to="/" className="m-0 p-0">
+                <img src="/src/images/logo_primary_color-transparent.png" alt=""/>
+            </Link>
+            </div>
           {/* Navbar Categories */}
           <div className="navbar-categories lg:block w-full mx-10">
             <ul className="navbar-category-list menu menu-horizontal invisible lg:visible flex lg:justify-evenly">
-              <CategoryItem categoryName={"LAPTOPS"}
+              <CategoryItem categoryName={"LAPTOPS"} link={"/Category"}
                 subCategories={[
                   <SubCategoryItem subCategoryName={"Laptops Nuevas"} />,
                   <SubCategoryItem subCategoryName={"Laptops Usadas"} />
                 ]}
               />
-              <CategoryItem categoryName={"COMPUTADORAS"}
+              <CategoryItem categoryName={"COMPUTADORAS"} link={"/Category"}
                 subCategories={[
                   <SubCategoryItem subCategoryName={"Hogas / Oficina"} />,
                   <SubCategoryItem subCategoryName={"Gaming"} />
                 ]}
               />
-              <CategoryItem categoryName={"COMPONENTES"}
+              <CategoryItem categoryName={"COMPONENTES"} link={"/Category"}
                 subCategories={[
                   <SubCategoryItem subCategoryName={"Procesadores"} />,
                   <SubCategoryItem subCategoryName={"Tarjetas Madre"} />,
@@ -59,7 +61,7 @@ const Navbar = () => {
                   <SubCategoryItem subCategoryName={"Enfriamiento"} />,
                 ]}
               />
-              <CategoryItem categoryName={"PERIFERICOS"}
+              <CategoryItem categoryName={"PERIFERICOS"} link={"/Category"}
                 subCategories={[
                   <SubCategoryItem subCategoryName={"Teclados"} />,
                   <SubCategoryItem subCategoryName={"Mouse"} />,
@@ -68,19 +70,19 @@ const Navbar = () => {
                   <SubCategoryItem subCategoryName={"Micrófonos"} />,
                 ]}
               />
-              <CategoryItem categoryName={"CELULARES"}
+              <CategoryItem categoryName={"CELULARES"} link={"/Category"}
                 subCategories={[
                   <SubCategoryItem subCategoryName={"Celulares Nuevos"} />,
                   <SubCategoryItem subCategoryName={"Celulares Usados"} />,
                 ]}
               />
-              <CategoryItem categoryName={"TABLETS"}
+              <CategoryItem categoryName={"TABLETS"} link={"/Category"}
                 subCategories={[
                   <SubCategoryItem subCategoryName={"Tablets Nuevas"} />,
                   <SubCategoryItem subCategoryName={"Tablets Usadas"} />,
                 ]}
               />
-              <CategoryItem categoryName={"ACCESORIOS"}
+              <CategoryItem categoryName={"ACCESORIOS"} link={"/Category"}
                 subCategories={[
                   <SubCategoryItem subCategoryName={"Cables"} />,
                   <SubCategoryItem subCategoryName={"Adaptadores"} />,
@@ -88,7 +90,7 @@ const Navbar = () => {
                   <SubCategoryItem subCategoryName={"Redes"} />,
                 ]}
               />
-              <CategoryItem categoryName={"CONSOLAS"}
+              <CategoryItem categoryName={"CONSOLAS"} link={"/Category"}
                 subCategories={[
                   <SubCategoryItem subCategoryName={"Consolas Nuevas"} />,
                   <SubCategoryItem subCategoryName={"Consolas Usadas"} />,
@@ -101,9 +103,11 @@ const Navbar = () => {
             <div className="w-7 mx-4 pt-1 btn-sm btn-ghost btn-square">
                 <img src="/src/images/search.png" alt="search icon"/>
             </div>
-            <div className="w-9 mx-4 btn-sm btn-ghost btn-square">
-              <img src="/src/images/shopping-cart.png" alt="shopping cart icon"/>
-            </div>
+            <Link to="/ShoppingCart">
+              <div className="w-9 mx-4 btn-sm btn-ghost btn-square">
+                <img src="/src/images/shopping-cart.png" alt="shopping cart icon"/>
+              </div>
+            </Link>
             <div className="w-9 ml-4 btn-sm btn-ghost btn-circle">
               <img src="/src/images/user.png" alt="profile icon" />
             </div>
