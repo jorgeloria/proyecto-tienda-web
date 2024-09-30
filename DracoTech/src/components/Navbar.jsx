@@ -31,7 +31,7 @@ const Navbar = () => {
           {/* Navbar Logo */}
             <div className="w-16 mx-5 rounded" role="button">
             <Link to="/" className="m-0 p-0">
-                <img src="/src/images/logo_primary_color-transparent.png" alt=""/>
+                <img src="src/assets/PrimaryLogoVect.svg" alt=""/>
             </Link>
             </div>
           {/* Navbar Categories */}
