@@ -1,0 +1,26 @@
+.edit-account {
+    width: 83%;
+    flex-grow: 1;
+    background-color: #343434;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.edit-account .side-container {
+    width: 48%;
+    box-sizing: border-box;
+    background-color: transparent;
+}
+
+.edit-account h2 {
+    font-family: 'Cinzel';
+    font-size: 28pt;
+    font-weight: bold;
+}
+
+.edit-account form {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
