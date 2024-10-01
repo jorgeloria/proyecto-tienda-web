@@ -2,7 +2,7 @@ Grupo 04
 Web
 
 Andrés
-Fray
+Fray Alonso Abrahams León B90031
 Grillo
 Jorge
 

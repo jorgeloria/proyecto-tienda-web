@@ -6,13 +6,13 @@ function SingleTextInput({
 }) {
   return (
     <>
-      {{ halfSize } ? (
-        <div className="half-size">
+      {halfSize ? (
+        <div className="text-input half-size">
           <label>{label}</label>
           <input type="text" placeholder={placeholder} required={mandatory} />
         </div>
       ) : (
-        <div className="full-size">
+        <div className="text-input full-size">
           <label>{label}</label>
           <input type="text" placeholder={placeholder} required={mandatory} />
         </div>
