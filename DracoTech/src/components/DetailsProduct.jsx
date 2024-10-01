@@ -13,12 +13,12 @@ function DetailsProduct({ name, price, description, stock, details }) {
             <br />
             <p className="text-lg h-full text-Text_color">{details}</p>
             <br />
-            <button className="btn bg-Tertiary_color hover:bg-Tertiary_color text-white w-full">
+            <button className="btn bg-Tertiary_color hover:bg-Tertiary_color text-white w-full border-none">
               Agregar al carrito
             </button>
           </div>
           <img
-            className=" w-full md:w-1/2 lg:w-1/2 rounded-md mx-4 "
+            className=" w-full md:w-1/2 lg:w-1/2 rounded-md mx-4"
             src="src/assets/66618-producto-video-gpu-asus-rog-strix-geforce-rtx-4070-12gb-gorila-games-10.jpg"
             alt=""
           />
