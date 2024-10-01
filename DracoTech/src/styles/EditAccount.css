@@ -1,3 +1,5 @@
+/*//TODO(Fray): Ordenar*/
+
 .edit-account {
     width: 83%;
     flex-grow: 1;
@@ -24,6 +26,8 @@
     font-family: 'Cinzel';
     font-size: 28pt;
     font-weight: bold;
+    margin-bottom: 1%;
+    margin-top: 2%;
 }
 
 .edit-account form {
@@ -83,6 +87,33 @@
 
 .edit-account .text-input input {
     width: 100%;
+    height: 1cm;
+    background-color: #666666;
+    color: white;
+    font-size: large;
+}
+
+
+.edit-account .expiration-date {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2%;
+}
+
+.edit-account .expiration-date span {
+    display: flex;
+    justify-content: space-between;
+}
+
+.edit-account .expiration-date span .month {
+    width: 30%;
+}
+
+.edit-account .expiration-date span .year {
+    width: 66%;
+}
+
+.edit-account .expiration-date input {
     height: 1cm;
     background-color: #666666;
     color: white;

@@ -1,5 +1,6 @@
 import SingleTextInput from "../components/AccountForm/SigleTextInput";
 import DoubleTextInput from "../components/AccountForm/DoubleTextInput";
+import ExpirationDate from "../components/AccountForm/ExpirationDate";
 
 import "../styles/EditAccount.css";
 
@@ -30,7 +31,7 @@ function EditAccount() {
               <DoubleTextInput labelLeft={"Provincia"} labelRight={"Ciudad"} />
               <SingleTextInput label={"Dirección"} />
               <SingleTextInput label={""} />
-              <SingleTextInput label={"Código postal"} />
+              <SingleTextInput label={"Código postal"} halfSize={true} />
             </div>
           </div>
 
@@ -40,6 +41,7 @@ function EditAccount() {
               <SingleTextInput label={"Número de tarjeta"} />
               <SingleTextInput label={"Nombre en la tarjeta"} />
               {/*//TODO(Fray): Fecha de vencimiento*/}
+              <ExpirationDate />
             </div>
 
             <div className="section">
