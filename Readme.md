@@ -1,20 +1,21 @@
-Grupo 04
-Web
+# Grupo 04 Web
 
-Andrés
-Fray
-Grillo
-Jorge
+## Integrantes
 
-Guía
+- Andrés
+- Fray Alonso Abrahams León B90031
+- Moisés Arias Grillo C08789
+- Jorge Loría López A63265
 
-https://dev.to/techcheck/creating-a-react-node-and-express-app-1ieg
+## Guía
 
-In a terminal (one separate terminal for each directory)
-in the client directory run this:
+En una terminal navegar a la carpeta ".\DracoTech\".
+<br>Ejecutar el comando `npm run dev`
 
-`npm run start`
+El puerto al que conectarse se indicará en la terminal
 
-then in the server directory run this:
+Si es la primera vez que ejecuta el programa podría
+necesitar instalar las dependencias mediante los
+siguientes comandos:
 
-`node index.js`
+- `npm install`
