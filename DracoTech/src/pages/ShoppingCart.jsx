@@ -76,7 +76,7 @@ const ShoppingCart = () => {
             />
           </tbody>
         </table>
-        <Button classNameValue="pay-button row-span-4 w-full h-16 text-xl">Pagar</Button>
+        <Button classNameValue="w-full h-16 text-xl">Pagar</Button>
       </div>
     </div>
   </>);
