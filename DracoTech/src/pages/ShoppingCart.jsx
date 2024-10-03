@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Monitor from "/src/images/Monitor.png"
+import Button from '../components/Button/Button';
 
 const ShoppingCart = () => {
   return (
@@ -46,7 +47,7 @@ const ShoppingCart = () => {
             </tr>
           </tbody>
         </table>
-        <button className="pay-button btn btn-ghost">Pagar</button>
+        <Button className="pay-button btn btn-ghost">Pagar</Button>
       </div>
     </div>
   </>);
