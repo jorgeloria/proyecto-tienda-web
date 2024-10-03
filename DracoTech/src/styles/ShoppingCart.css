@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+main {
+  min-height: 100dvh;
+}
+
+.summary-section {
+  height: 600px;
+}
+
+.header {
+  font-family: Cinzel;
+}
+
+.cart-table tr {
+  border: none;
+}
+
+.hard-center {
+  align-items: center;
+  align-self: center;
+  align-content: center;
+  justify-content: center;
+  justify-items: center;
+  justify-self: center;
+}
+
+@media(max-width:768px) {
+  td {
+    display: block;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    align-self: center;
+    align-content: center;
+    justify-content: center;
+    justify-items: center;
+    justify-self: center;
+  }
+
+  table {
+    align-items: center;
+    align-self: center;
+    align-content: center;
+    justify-content: center;
+    justify-items: center;
+    justify-self: center;
+  }
+
+  th, .header {
+    display: none;
+  }
+
+  .cart-table tr {
+    border: 1px solid #444444;
+  }
+
+  .product-section {
+    margin-bottom: 100px;
+  }
+
+  
+} 
+
+
+/* div,
+li,
+a,
+span,
+tr,
+th,
+td {
+  outline: solid;
+  outline-color: white;
+  outline-width: 1px;
+}
+
+li {
+  outline-color:cornflowerblue;
+  background-color: rgba(100, 148, 237, 0.308);
+}
+
+a {
+  outline-color: rgba(255, 127, 80, 0.685);
+}
+
+span {
+  outline-color: rgba(128, 255, 0, 0.521);
+} */
