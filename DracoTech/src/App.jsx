@@ -1,5 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+
+import Account from "./pages/Account";
 import EditAccount from "./pages/EditAccount";
 import Home from "./pages/Home";
 import Layout from "./components/Layout";
@@ -14,6 +16,8 @@ function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
+        <Route path="/Account" element={<Account />} />
+        <Route path="/Login" element={<Login />} />
         <Route path="/Category" element={<Category />} />
         <Route path="/EditAccount" element={<EditAccount />} />
         <Route path="/Login" element={<Login />} />
