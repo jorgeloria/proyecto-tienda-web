@@ -2,6 +2,8 @@ import React from 'react';
 
 import Monitor from "/src/images/Monitor.png"
 
+import "../styles/ShoppingCart.css"
+
 import ShoppingCartItem from '../components/ShoppingCart/ShoppingCartItem';
 import SummaryItem from '../components/ShoppingCart/SummaryItem';
 import Button from '../components/Button/Button';
