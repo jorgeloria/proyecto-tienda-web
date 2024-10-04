@@ -2,7 +2,7 @@
 
 ## Integrantes
 
-- Andrés
+- Andrés Esteban Serrano Robles C07483
 - Fray Alonso Abrahams León B90031
 - Moisés Arias Grillo C08789
 - Jorge Loría López A63265
