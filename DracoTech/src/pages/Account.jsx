@@ -9,7 +9,7 @@ const Account = () => {
       {/*//TODO(Fray): convertir en componente? */}
       <div className="options">
         <Button 
-          onClick={() => (window.location.href = "/SignUp")}
+          onClick={() => (window.location.href = "/Login")}
           classNameValue="font-medium text-2xl">Iniciar Sesión</Button>
 
         <Button
