@@ -1,0 +1,23 @@
+
+.signUpMain{
+    position: relative;
+    margin-top: 5%;
+    margin-left: 20%;
+    margin-bottom: 10%;
+    width: 60%;
+}
+
+@media (max-width: 1250px) {
+    .signUpMain{
+        margin-top: 8%;
+        margin-left: 25%;
+        margin-bottom: 20%;
+    }    
+  }
+    
+.inicioSesionHead {
+    font-family: 'Cinzel', serif;
+    padding-left: 5%;
+    padding-bottom: 10%;
+    font-size: 46px;
+}

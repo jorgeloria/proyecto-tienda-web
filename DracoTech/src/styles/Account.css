@@ -1,0 +1,142 @@
+/*//TODO(Fray): Ordenar */
+/*//TODO(Fray): Eliminar estilos innecesarios */
+
+.account {
+    width: 83%;
+    flex-grow: 1;
+    background-color: #343434;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+
+
+.options {
+    background-color: transparent;
+    display: grid; /* Use grid layout */
+    grid-template-columns: repeat(2, 1fr); /* Create 2 equal-width columns */
+    gap: 20px; /* Add spacing between items */
+}
+
+@media (max-width: 1024px) {
+    .options {
+        grid-template-columns: repeat(1, 1fr); /* Still 2 columns, but adjusts for smaller tablets */
+    }
+}
+
+/* Small tablets and large phones (below 768px) */
+@media (max-width: 768px) {
+    .options {
+        grid-template-columns: 1fr; /* Switch to 1 column on smaller screens */
+    }
+}
+
+/* Small phones (below 480px) */
+@media (max-width: 480px) {
+    .options {
+        grid-template-columns: 1fr; /* Keep 1 column for small devices */
+        padding: 10px; /* Reduce padding for very small screens */
+    }
+}
+
+
+.account h1 {
+    font-family: 'Cinzel';
+    font-size: 28pt;
+    font-weight: bold;
+    margin-bottom: 0.5%;
+    margin-top: 0.5%;
+}
+
+.account h2 {
+    font-family: 'Cinzel';
+    font-size: 28pt;
+    font-weight: bold;
+    margin-bottom: 1%;
+    margin-top: 2%;
+}
+
+
+.account button {
+    width: auto;
+    height: max-content;
+    margin: 0 auto;
+    margin-top: 2%;
+    margin-bottom: 1%;
+    background-color: #239DD5;
+    color: white
+}
+
+.account button:hover {
+    background-color: #23CCD5;
+}
+
+.account .side-container-wrapper{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.account .side-container-wrapper-single-column{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.account .text-input {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2%;
+}
+
+.account .full-size {
+    width: 100%;
+}
+
+.account .half-size {
+    width: 48%;
+}
+
+.account .double-text-input {
+    display: flex;
+    justify-content: space-between;
+}
+
+.account .text-input input {
+    width: 100%;
+    height: 1cm;
+    background-color: #666666;
+    color: white;
+    font-size: large;
+}
+
+
+.account .expiration-date {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2%;
+}
+
+.account .expiration-date span {
+    display: flex;
+    justify-content: space-between;
+}
+
+.account .expiration-date span .month {
+    width: 30%;
+}
+
+.account .expiration-date span .year {
+    width: 66%;
+}
+
+.account .expiration-date input {
+    height: 1cm;
+    background-color: #666666;
+    color: white;
+    font-size: large;
+}

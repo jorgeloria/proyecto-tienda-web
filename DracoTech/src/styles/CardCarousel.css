@@ -1,0 +1,26 @@
+.titled-card-carousel .swiper-wrapper {
+  margin-right: 120px;
+}
+
+.titled-card-carousel .swiper-horizontal {
+  padding-left: 60px;
+}
+
+
+.titled-card-carousel .corusel-title-text-box {
+  border: 3px solid white;  /* Border for the rectangle */
+  margin-bottom: 1%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  text-align: center;
+  width: 300px;            /* Width of the box */
+  overflow-wrap: break-word; /* Ensures text wraps within the box */
+  background-color: transparent; /* Light background color */
+  /* //TODO(Fray): Cambiar el tipo de fuente */
+  font-family: Red-Hat-Display, Arial, sans-serif, ; /* Set font for the text */
+}
+
+.titled-card-carousel {
+  margin-top: 2%;
+  margin-bottom: 2%;
+}

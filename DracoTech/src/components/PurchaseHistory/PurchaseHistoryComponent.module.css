@@ -1,0 +1,25 @@
+
+.purchaseHistoryMain{
+    position: relative;
+    margin-top: 5%;
+    margin-left: 15%;
+    margin-bottom: 10%;
+    width: 100%;
+}
+
+@media (max-width: 1250px) {
+    .purchaseHistoryMain{
+        margin-top: 8%;
+        margin-left: 25%;
+        margin-bottom: 20%;
+    }    
+  }
+    
+
+.purchaseHistoryHead {
+    font-family: 'Cinzel', serif;
+    padding-left: 5%;
+    padding-bottom: 10%;
+    font-size: 46px;
+}
+

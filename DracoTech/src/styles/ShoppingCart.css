@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+main {
+  min-height: 100dvh;
+}
+
+.summary-section {
+  height: 600px;
+}
+
+.cart-table tr {
+  border: none;
+}
+
+.shopping-cart-grid {
+  margin-bottom: 5%;
+}
+
+td{
+  font-family: "Red Hat Display", system-ui;
+}
+
+@media(max-width:768px) {
+  td {
+    display: block;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    align-self: center;
+    align-content: center;
+    justify-content: center;
+    justify-items: center;
+    justify-self: center;
+  }
+
+  table {
+    align-items: center;
+    align-self: center;
+    align-content: center;
+    justify-content: center;
+    justify-items: center;
+    justify-self: center;
+  }
+
+  th, .header {
+    display: none;
+  }
+
+  .cart-table tr {
+    border: 1px solid #444444;
+  }
+  
+} 
