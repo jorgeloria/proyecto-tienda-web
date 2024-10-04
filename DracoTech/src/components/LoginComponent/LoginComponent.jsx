@@ -3,7 +3,6 @@ import React from "react";
 
 import styles from "./LoginComponent.module.css"
 
-import Button from '../Button/Button';
 import SignInWithBox from "../SignInWithBox/SignInWithBox";
 
 import LoginForm from "../LoginForm/LoginForm"

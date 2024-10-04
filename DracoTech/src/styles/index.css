@@ -6,3 +6,8 @@ body {
   background-color: #202020;
   color: #ffffff
 }
+
+h1 {
+  font-family: 'Cinzel', serif; 
+  font-size: large;
+}

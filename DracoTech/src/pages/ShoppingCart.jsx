@@ -1,8 +1,10 @@
 import React from 'react';
 
 import Monitor from "/src/images/Monitor.png"
+
 import ShoppingCartItem from '../components/ShoppingCart/ShoppingCartItem';
 import SummaryItem from '../components/ShoppingCart/SummaryItem';
+import Button from '../components/Button/Button';
 
 const ShoppingCart = () => {
   return (
@@ -74,7 +76,7 @@ const ShoppingCart = () => {
             />
           </tbody>
         </table>
-        <button className="pay-button row-span-4 w-full h-16 text-xl btn btn-ghost hard-center bg-Tertiary_color">Pagar</button>
+        <Button classNameValue="w-full h-16 text-xl">Pagar</Button>
       </div>
     </div>
   </>);
