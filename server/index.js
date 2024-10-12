@@ -1,15 +1,19 @@
-const express = require('express')
-const app = express();
-const cors = require('cors')
+import express from 'express'
+import cors from 'cors'
 
-console.log(app)
+// import routes
+import testRoutes from './routes/testRoutes.js'
 
-app.use(cors()) 
+const PORT  = 8080
 
-app.listen(8080, ()=>{
-    console.log('server listening on port 8080')
-});
+const app = express()
 
-app.get('/', (req, res) => {
-    res.send('Hello form our server!')
-});
+app.use(cors({
+    origin: 'http://localhost:5173'
+}))
+
+app.use('/testing', testRoutes)
+
+app.listen(PORT, () => {
+    console.log(`server listening on port ${PORT}`)
+})
