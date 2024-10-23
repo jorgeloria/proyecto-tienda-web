@@ -6,11 +6,14 @@ import { UserController } from "../controllers/user"
 
 export const UserRouter = Router();
 
+const userController = new UserController();
+
+// Register a user
 UserRouter.post("/register", (req: Request, res: Response)=>{
-    UserController.register(req,res);
+    userController.doRegister(req,res);
 });
 
 // Login a user
 UserRouter.post("/login", (req: Request, res: Response)=>{
-    UserController.login(req, res);
+    userController.doLogin(req, res);
 });

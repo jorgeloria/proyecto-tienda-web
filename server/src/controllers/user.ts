@@ -3,8 +3,14 @@ import { Request, Response } from "express";
 
 export class UserController {
 
+// greeting: string;
+
+// constructor(message: string) {
+//   this.greeting = message;
+// } 
+
   // register a new user
-  static async register(req: Request, res: Response) {
+  public async doRegister(req: Request, res: Response) {
     try {
       return res.status(200).json({
         message: "User registered successfully",
@@ -16,9 +22,8 @@ export class UserController {
     }
   }
 
-
   // login a user
-  static async login(req: Request, res: Response) {
+  public async doLogin(req: Request, res: Response) {
     try {
       return res.status(200).json({
         message: "User logged in successfully",
@@ -29,6 +34,5 @@ export class UserController {
       });
     }
   }
-
 
 }
