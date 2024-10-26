@@ -1,26 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import Card from "../components/Card";
 import Filters from "../components/Filters";
+import {products as intialProducts} from "../mocks/products.json"
 
 const Category = () => {
-  const cardsData = Array(12).fill({
-    name: "ROG Strix GeForce RTX 4070 12GB GDDR6X OC Edition",
-    image: "src/assets/Rtx4047.png",
-    price: "390,000",
-  });
-
+const [products] = useState(intialProducts)
+const [filters, setFilters] = useState({
+  category: 'all',
+  minPrice: 0
+})
+const filtersProducts = (products) => {
+  return products.filter(product => {
+    return(
+      product.price >= filters.minPrice &&
+      (
+        filters.category === 'all' ||
+        product.category === filters.category
+      )
+    )
+  })
+}
   return (
     <div>
       <div className="flex justify-center py-20">
         <div className="block md:flex md:flex-row md:items-start md:space-x-6 lg:space-x-8">
           <Filters />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-8 gap-x-10">
-            {cardsData.map((card, index) => (
+            {filtersProducts(products).map((product) => (
               <Card
-                key={index}
-                name={card.name}
-                image={card.image}
-                price={card.price}
+                key={product.id}
+                id={product.id}
+                name={product.title}
+                image="src/assets/Rtx4047.png"
+                price={product.price}
               />
             ))}
           </div>

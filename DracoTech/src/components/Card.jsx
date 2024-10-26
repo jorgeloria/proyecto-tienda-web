@@ -1,16 +1,23 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-function Card({ name, image, price }) {
+function Card({ id, name, image, price }) {
   const navigate = useNavigate();
 
   const handleCardClick = () => {
-    navigate("/Product");
+    navigate("/Product", {
+      state: {
+        title: name,
+        id,
+        image,
+        price,
+      },
+    });
   };
 
   return (
     <div
-    onClick={handleCardClick}
+      onClick={handleCardClick}
       className="card rounded-md bg-Card_color w-auto h-auto md:w-[250px] md:h-[355px] shadow-xl hover:text-Secundary_color cursor-pointer"
     >
       <figure className="px-8 pt-4">
