@@ -11,6 +11,7 @@ import ShoppingCart from "./pages/ShoppingCart";
 import Product from "./pages/Product";
 import SignUp from "./pages/SignUp";
 import PurchaseHistory from './pages/PurchaseHistory';
+import CheckoutPage  from './pages/CheckoutPage';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/ShoppingCart" element={<ShoppingCart />} />
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/PurchaseHistory" element={<PurchaseHistory />} />
+        <Route path="/CheckoutPage" element={<CheckoutPage />} />
       </Route>
     </Routes>
   );

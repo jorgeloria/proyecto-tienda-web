@@ -4,9 +4,9 @@ import ShoppingCartItem from '../components/ShoppingCart/ShoppingCartItem';
 import SummaryItem from '../components/ShoppingCart/SummaryItem';
 import Button from '../components/Button/Button';
 import { useCart } from '../hooks/useCart';
+import { Link } from 'react-router-dom';
 
 const ShoppingCart = () => {
-  const cartCheckboxId = useId();
   const { cart, clearCart } = useCart();
   
   const subtotal = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
@@ -46,8 +46,7 @@ const ShoppingCart = () => {
             </tbody>
           </table>
         </div>
-
-        <div className="summary-section md:col-span-5 flex grid md:grid-rows-12 mx-10 px-4 bg-Card_color rounded-lg">
+        <div className="summary-section md:col-span-5 grid md:grid-rows-12 mx-10 px-4 bg-Card_color rounded-lg">
           <h1 className='header row-span-2 text-4xl text-center align-center mt-4'>Resumen</h1>
           <table className="table summary-table row-span-6 text-base mx-4">
             <tbody>
@@ -57,7 +56,9 @@ const ShoppingCart = () => {
               <SummaryItem name={"Total"} value={total.toFixed(2)} />
             </tbody>
           </table>
-          <Button classNameValue="w-full h-16 text-xl">Pagar</Button>
+          <Link to="/CheckoutPage">
+            <Button classNameValue="w-full h-16 text-xl">Pagar</Button>
+          </Link>
         </div>
       </div>
     </>
