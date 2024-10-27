@@ -11,7 +11,7 @@ const ShoppingCart = () => {
   
   const subtotal = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
   const envio = 6000;
-  const iva = subtotal * 0.115;
+  const iva = subtotal * 0.13;
   const total = subtotal + envio + iva;
 
   return (
@@ -35,7 +35,7 @@ const ShoppingCart = () => {
                 <ShoppingCartItem
                   key={item.id}
                   id={item.id}
-                  image={item.image}
+                  imageMin={item.imageMin}
                   alt={item.name}
                   name={item.name}
                   price={item.price}

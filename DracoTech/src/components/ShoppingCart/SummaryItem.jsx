@@ -4,7 +4,7 @@ const SummaryItem = ({name, value}) => {
       <tr className="border-Footer_color">
         <td><strong>{name}</strong></td>
         <td className="lg:w-64"></td>
-        <td>₡ {value}</td>
+        <td>₡{value}</td>
       </tr>
     </>
   );

@@ -1,10 +1,11 @@
 import { useCart } from "../../hooks/useCart";
 
-const ShoppingCartItem = ({ id, image, alt, name, price, quantity, subtotal}) => {
+const ShoppingCartItem = ({ id, imageMin, name, price, quantity, subtotal}) => {
   const { removeFromCart, addToCart, removeOneFromCart } = useCart();
   const product = {
     id,
     name,
+    imageMin,
     price,
     name,
     quantity: 1,
@@ -13,7 +14,7 @@ const ShoppingCartItem = ({ id, image, alt, name, price, quantity, subtotal}) =>
     <>
       <tr className="shopping-cart-row">
         <td>
-          <img src={image} alt={alt} />
+          <img className="rounded-md" src={`${imageMin}`} alt={name} />
         </td>
         <td>{name}</td>
         <td>₡ {price}</td>
