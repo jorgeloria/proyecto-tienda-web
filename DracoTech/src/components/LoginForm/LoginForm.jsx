@@ -5,6 +5,7 @@ import Button from '../Button/Button';
 
 import styles from './LoginForm.module.css'
 import LoginService from "../../services/LoginService";
+import { Link } from "react-router-dom";
 
 const LoginForm = () => {
     const onFinish = event =>{
@@ -38,6 +39,7 @@ const LoginForm = () => {
                 <div className="row text-center ">
                     <Button onClick={onFinish} >Iniciar Sesión</Button>
                 </div>
+                <div className="row"><Link to={"/Signup"} className={styles.register_link}>Crear una cuenta</Link></div>
             </div>
         </form>
 
