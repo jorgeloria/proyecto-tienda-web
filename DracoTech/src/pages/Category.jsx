@@ -1,25 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Card from "../components/Card";
 import Filters from "../components/Filters";
-import {products as intialProducts} from "../mocks/products.json"
+import ProductService from "../services/ProductService"; // Asegúrate de que la ruta sea correcta
 
 const Category = () => {
-const [products] = useState(intialProducts)
-const [filters, setFilters] = useState({
-  category: 'all',
-  minPrice: 0
-})
-const filtersProducts = (products) => {
-  return products.filter(product => {
-    return(
-      product.price >= filters.minPrice &&
-      (
-        filters.category === 'all' ||
-        product.category === filters.category
-      )
-    )
-  })
-}
+  const [products, setProducts] = useState([]);
+  const [filters,] = useState({
+    category: "all",
+    minPrice: 0
+  });
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const data = await ProductService.getProducts();
+        setProducts(data);
+      } catch (err) {
+        setError("Error al cargar los productos");
+        console.error(err);
+      }
+    };
+    fetchProducts();
+  }, []);
+
+  const filtersProducts = (products) => {
+    return products.filter((product) => {
+      return (
+        product.price >= filters.minPrice &&
+        (filters.category === "all" || product.category === filters.category)
+      );
+    });
+  };
+
   return (
     <div>
       <div className="flex justify-center py-20">
