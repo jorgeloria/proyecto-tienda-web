@@ -12,6 +12,12 @@ export class UserController {
   // register a new user
   public async doRegister(req: Request, res: Response) {
     try {
+      const {name, email, password} = req.body;
+
+      console.log("Got name: " + name)
+      console.log("Got email: " + email)
+      console.log("Got password: " + password)
+
       return res.status(200).json({
         message: "User registered successfully",
       });
