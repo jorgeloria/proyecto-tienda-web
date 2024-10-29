@@ -1,30 +1,61 @@
-import React from 'react'
+import React from "react";
+import { useCart } from "../hooks/useCart";
 
-function DetailsProduct({ name, price, description, stock, details }) {
-    return (
-      <>
-        <div className="flex flex-col-reverse md:flex-row items-start justify-center py-10 max-h-full">
-          <div className="bg-Card_color rounded-md p-8 mx-4 ">
-          <h1 className="text-3xl py-2">{name}</h1>
-            <h2 className="text-2xl py-2">₡{price}</h2>
-            <p className="text-lg text-Text_color">{description}</p>
-            <br />
-            <p className="text-lg text-Text_color">{stock}</p>
-            <br />
-            <p className="text-lg h-full text-Text_color">{details}</p>
-            <br />
-            <button className="btn bg-Tertiary_color hover:bg-Tertiary_color text-white w-full border-none">
-              Agregar al carrito
-            </button>
-          </div>
+function DetailsProduct({ id, name, imageMin, imageNorm, price, description, stock, details }) {
+  const { addToCart } = useCart();
+  
+  const handleAddToCart = () => {
+    const product = {
+      id,
+      name,
+      imageMin,
+      price,
+      quantity: 1,
+    };
+
+    addToCart(product);
+  };
+
+  return (
+    <div className="container mx-auto py-10">
+      <div className="flex flex-col md:flex-row bg-Card_color shadow-lg rounded-lg overflow-hidden">
+        {/* Imagen del producto */}
+        <div className="md:w-1/2">
           <img
-            className=" w-full md:w-1/2 lg:w-1/2 rounded-md mx-4"
-            src="src/assets/66618-producto-video-gpu-asus-rog-strix-geforce-rtx-4070-12gb-gorila-games-10.jpg"
-            alt=""
+            className="w-full h-auto object-cover rounded-lg"
+            src={imageNorm}
+            alt={name}
           />
         </div>
-      </>
-    );
-  }
+        <div className="md:w-1/2 p-6">
+          <h1 className="text-4xl font-bold text-white mb-2">{name}</h1>
+          <h2 className="text-3xl text-white font-bold mb-4">₡{price}</h2>
 
-export default DetailsProduct
+          <div className="text-lg text-Text_color mb-6">
+            {description.split("\n").map((line, index) => (
+              <p key={index}>{line}</p>
+            ))}
+          </div>
+
+          {/* Stock */}
+          <div className="mb-4">
+            {stock === "inStock" ? (
+              <span className="text-green-500 font-semibold">En Stock</span>
+            ) : (
+              <span className="text-red-500 font-semibold">Agotado</span>
+            )}
+          </div>
+
+          <button
+            className="btn bg-Tertiary_color hover:bg-Tertiary_color text-lg text-white w-full  rounded-md shadow-md transition duration-300 ease-in-out"
+            onClick={handleAddToCart}
+          >
+            Agregar al carrito
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default DetailsProduct;

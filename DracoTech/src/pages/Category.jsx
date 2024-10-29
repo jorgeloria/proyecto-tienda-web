@@ -1,13 +1,35 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Card from "../components/Card";
 import Filters from "../components/Filters";
+import ProductService from "../services/ProductService"; // Asegúrate de que la ruta sea correcta
 
 const Category = () => {
-  const cardsData = Array(12).fill({
-    name: "ROG Strix GeForce RTX 4070 12GB GDDR6X OC Edition",
-    image: "src/assets/Rtx4047.png",
-    price: "390,000",
+  const [products, setProducts] = useState([]);
+  const [filters,] = useState({
+    category: "all",
+    minPrice: 0
   });
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const data = await ProductService.getProducts();
+        setProducts(data);
+      } catch (err) {
+        setError("Error al cargar los productos");
+        console.error(err);
+      }
+    };
+    fetchProducts();
+  }, []);
+
+  const filtersProducts = (products) => {
+    return products.filter((product) => {
+      return (
+        product.price >= filters.minPrice &&
+        (filters.category === "all" || product.category === filters.category)
+      );
+    });
+  };
 
   return (
     <div>
@@ -15,12 +37,15 @@ const Category = () => {
         <div className="block md:flex md:flex-row md:items-start md:space-x-6 lg:space-x-8">
           <Filters />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-8 gap-x-10">
-            {cardsData.map((card, index) => (
+            {filtersProducts(products).map((product) => (
               <Card
-                key={index}
-                name={card.name}
-                image={card.image}
-                price={card.price}
+                key={product.id}
+                id={product.id}
+                name={product.title}
+                imageMin={product.images}
+                imageNorm={product.thumbnail}
+                price={product.price}
+                descrip={product.description}
               />
             ))}
           </div>
