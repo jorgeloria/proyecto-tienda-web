@@ -1,12 +1,27 @@
 import React from "react";
 
-
+import axios from "axios";
 import Button from '../Button/Button';
 
 import SignUpField from "./SignUpField";
 
 import styles from './SignUpForm.module.css'
 import { useState } from "react";
+
+const registerUser = async (data) => {
+    console.log("Name: " + data.name)
+    try {
+        const response = await axios.post("http:localhost:3001/user/register",
+            {
+                name: data.name,
+                email: data.email,
+                password: data.password
+            }
+        )
+    } catch(error) {
+        console.log(error)
+    }
+}
 
 const verifyFullName = (name) => {
     if (name.length === 0) {
@@ -86,6 +101,7 @@ const SignUpForm = () => {
         if (verifyInputs()) {
             // send to backend
             console.log("Los datos son válidos")
+            registerUser(formData)
         } else {
             // do nothing?
             console.log("Hay errores en el formulario")
