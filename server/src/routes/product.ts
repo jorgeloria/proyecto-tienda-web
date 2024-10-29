@@ -7,3 +7,7 @@ const productController = new ProductController();
 ProductRouter.get("/getProducts", (req: Request, res: Response) => {
     productController.getProducts(req, res);
 });
+
+ProductRouter.get("/getProductById/:id", (req: Request, res: Response) => {
+    productController.getProductById(req, res);
+});

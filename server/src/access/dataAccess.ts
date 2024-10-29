@@ -6,4 +6,8 @@ export class DataAccess {
 	public async getProducts() {
 		return this.jsonHandler.readProducts();
 	}
+
+	public async getProductById(id: number) {
+		return this.jsonHandler.readProductById(id);
+	}
 }
