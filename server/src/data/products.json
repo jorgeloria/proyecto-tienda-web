@@ -1,0 +1,180 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "title": "AMD Ryzen 9 7950X3D",
+      "description": "Frecuencia: 4.2 GHz / 5.7 GHz Max Boost \nCores: 16 \nThreads: 32 \nCache: 16/128MB (L2/L3) \nSocket: AM5 \nConsumo: 120W \nModelo de gráficos: AMD Radeon™ Graphics \nNumero de núcleos de GPU: 2Tecnología AMD 3D V-Cache",
+      "price": 379000,
+      "stock": 25,
+      "type": "components",
+      "category": "processors",
+      "thumbnail": "./src/mocks/productImages/amd-ryzen-9-7950x3d-norm.jpg",
+      "images": "./src/mocks/productImages/amd-ryzen-9-7950x3d-min.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Intel Core i9-14900K",
+      "description": "Socket: LGA 1700 \n Familia: Raptor Lake\nCores: 24\nPerformance-cores: 8\nEfficient-cores: 16\nThreads: 32\nFrecuencia: 3.2 GHz / 6.0 GHz Turbo\nIntel UHD Graphics 770",
+      "price": 325000,
+      "stock": 15,
+      "type": "components",
+      "category": "processors",
+      "thumbnail": "src/mocks/productImages/intel-core-i9-14900k-norm.jpg",
+      "images": "src/mocks/productImages/intel-core-i9-14900k-min.jpg"
+    },
+    {
+      "id": 3,
+      "title": "MSI Geforce RTX 4090 Suprim Liquid",
+      "description": "Memory: 24GB GDDR6X\nMotor de gráficos: NVIDIA® GeForce RTX™ 4090\nNorma Bus: PCI Express® Gen 4\nInterfaz de Memoria: 384-bit\nVelocidad clock núcleo (MHz): Boost: 2625 MHz (GAMING & SILENT Mode)\nVelocidad clock memoria (MHz): 21 Gbps\nMáximo de pantallas: 4\nTecnología G-SYNC™: Y\nSoporte HDCP: Y\nConsumo (W): Silent mode: 450W / Gaming mode: 480W\nSalida: DisplayPort x 3 (v1.4a)\nAlimentación recomendada (W): 1000W (Min. 850W)\nResolución máxima digital: 7680x4320\nConectores de alimentación: 16-pin x 1\nSoporte DirectX Versión: 12 Ultimate\nDimensiones (mm): Card: 280 x 140 x 43 mm \n radiator + fan: 274 x 121 x 55 mm / Tube length: L470 ± 10 x D11.2 mm",
+      "price": 1235000,
+      "stock": 10,
+      "type": "components",
+      "category": "graphics-cards",
+      "thumbnail": "src/mocks/productImages/msi-geforce-rtx-4090-suprim-liquid-x-24-gb-norm.jpg",
+      "images": "src/mocks/productImages/msi-geforce-rtx-4090-suprim-liquid-x-24-gb-min.jpg"
+    },
+    {
+      "id": 4,
+      "title": "Asus Tuf Radeon RX 7900XTX 24 GB OC",
+      "description": "Fabricante: Asus \nGPU: AMD Radeon RX 7900 XTX \nMemoria: 24 GB GDDR6 \nBoost Clock: 2615 MHz",
+      "price": 449000,
+      "stock": 8,
+      "type": "components",
+      "category": "graphics-cards",
+      "thumbnail": "src/mocks/productImages/asus-tuf-gaming-amd-radeon-rx-7900xtx-24gb-oc-norm.jpg",
+      "images": "src/mocks/productImages/asus-tuf-gaming-amd-radeon-rx-7900xtx-24gb-oc-min.jpg"
+    },
+    {
+      "id": 5,
+      "title": "Asus Rog Maximus Z790 Formula",
+      "description": "Plataforma: Intel\nSocket: 1700\nChipset: Z790\nFormato: ATX\nMemoria: DDR5 hasta 8000 MHz\n2x2 Wi-Fi 7\nBluetooth 5.4\nCompatible con Procesadores Intel 12th, 13th, 14th Gen",
+      "price": 161460,
+      "stock": 12,
+      "type": "components",
+      "category": "motherboards",
+      "thumbnail": "src/mocks/productImages/asus-rog-maximus-z790-formula-ddr5-norm.jpg",
+      "images": "src/mocks/productImages/asus-rog-maximus-z790-formula-ddr5-min.jpg"
+    },
+    {
+      "id": 6,
+      "title": "MSI MAG Z790 Carbon Wifi II",
+      "description": "Plataforma: Intel\nSocket: 1700\nChipset: Z790\nFormato: ATX\nMemoria: DDR5 hasta 7800 MHz\nCompatible con Procesadores Intel 14th/ 13th/ 12th \nWi-Fi 7\nBluetooth 5.4",
+      "price": 285000,
+      "stock": 14,
+      "type": "components",
+      "category": "motherboards",
+      "thumbnail": "src/mocks/productImages/msi-mag-z790-carbon-wifi-ii-nom.jpg",
+      "images": "src/mocks/productImages/msi-mag-z790-carbon-wifi-ii-mini.jpg"
+    },
+    {
+      "id": 7,
+      "title": "Teamgroup T-Force Delta RGB",
+      "description": "Velocidad: DDR4 3200\nCapacidad: 8 GB\nLatencia CAS: 16\nVoltaje: 1.35V\nLED RGB",
+      "price": 48060,
+      "stock": 30,
+      "type": "components",
+      "category": "memory",
+      "thumbnail": "src/mocks/productImages/teamgroup-t-force-delta-rgb-8-gb-ddr4-2666-norm.jpg",
+      "images": "src/mocks/productImages/teamgroup-t-force-delta-rgb-8-gb-ddr4-2666-min.jpg"
+    },
+    {
+      "id": 8,
+      "title": "G.SKILL Trident Z Royal",
+      "description": "Velocidad: DDR4 3600\nCapacidad: 16 GB\nLatencia CAS: 18\nVoltaje: 1.35V\nLED RGB",
+      "price": 25000,
+      "stock": 20,
+      "type": "components",
+      "category": "memory",
+      "thumbnail": "src/mocks/productImages/gskill-trident-z-royal-16-gb-2-x-8-gb-ddr4-3600-silver-norm.jpg",
+      "images": "src/mocks/productImages/gskill-trident-z-royal-16-gb-2-x-8-gb-ddr4-3600-silver-min.jpg"
+    },
+    {
+      "id": 9,
+      "title": "Adata Legend 960 4TB",
+      "description": "Fabricante: ADATA\nCapacidad: 4TB\nVelocidad Lectura: 7400 MB/s\nVelocidad Escritura: 6400 MB/s\nInterfaz: M.2\nPCIe Gen4 x4",
+      "price": 199900,
+      "stock": 22,
+      "type": "components",
+      "category": "storage",
+      "thumbnail": "src/mocks/productImages/adata-legend-960-4tb-norm.jpg",
+      "images": "src/mocks/productImages/adata-legend-960-4tb-min.jpg"
+    },
+    {
+      "id": 10,
+      "title": "Disco Duro Toshiba S300",
+      "description": "Capacidad: 6 TB\nInterfaz: SATA 6.0Gb/s\nRPM: 5400 RPM\nCache: 256 MB\nFormato: 3.5",
+      "price": 89000,
+      "stock": 50,
+      "type": "components",
+      "category": "storage",
+      "thumbnail": "src/mocks/productImages/disco-duro-toshiba-s300-6-tb-norm.jpg",
+      "images": "src/mocks/productImages/disco-duro-toshiba-s300-6-tb-min.jpg"
+    },
+    {
+      "id": 11,
+      "title": "ASUS ROG Thor 1000W Platinum II",
+      "description": "Fabricante: Asus\nPoder: 1000 W\nCertificación: 80 Plus Platinum\nModular: Si\nCompatible con PCIe Gen 5.0",
+      "price": 229000,
+      "stock": 18,
+      "type": "components",
+      "category": "power-supplies",
+      "thumbnail": "src/mocks/productImages/asus-rog-thor-1000w-platinum-ii-norm.jpg",
+      "images": "src/mocks/productImages/asus-rog-thor-1000w-platinum-ii-min.jpg"
+    },
+    {
+      "id": 12,
+      "title": "Asus ROG Hyperion - GR701",
+      "description": "Fabricante: ASUS\nTamaño: Full Tower\nPanel: Vidrio Temperado\nAura Sync RGB\nPlaca frontal con temática ROG iluminada\nMarco de aleación de aluminio\nDos puertos tipo C en el  panel frontal\nSoporta radiadores de hasta 480mm",
+      "price": 309000,
+      "stock": 15,
+      "type": "components",
+      "category": "cases",
+      "thumbnail": "src/mocks/productImages/asus-rog-hyperion-gr701-blanco-norm.jpg",
+      "images": "src/mocks/productImages/asus-rog-hyperion-gr701-blanco-min.jpg"
+    },
+    {
+      "id": 13,
+      "title": "CORSAIR iCUE Link H100i LCD",
+      "description": "Radiador: 240mm\nIntel Socket: 1200 / 1151 / 1150 / 1155 / 1156 / 1700\nAMD Socket:  AM4 / AM5 \nPantalla IPS",
+      "price": 163000,
+      "stock": 25,
+      "type": "components",
+      "category": "cooling",
+      "thumbnail": "src/mocks/productImages/corsair-icue-link-h100i-lcd-norm.jpg",
+      "images": "src/mocks/productImages/corsair-icue-link-h100i-lcd-min.jpg"
+    },
+    {
+      "id": 14,
+      "title": "Samsung Odyssey Neo G9",
+      "description": "Marca: Samsung\nTamaño: 57 pulgadas\nResolucion: 7680 x 2160\nTipo de Panel: VA\nFrecuencia Vertical: 240 Hz\nTiempo de Respuesta: 1 ms\nEntradas: DisplayPort  - HDMI\nCurvatura 1000R\nHDR10+\nFreeSync Premium Pro\nQuantum Mini LED ",
+      "price": 1225000,
+      "stock": 10,
+      "type": "peripherals",
+      "category": "monitors",
+      "thumbnail": "src/mocks/productImages/samsung-odyssey-neo-g9-57-240hz-norm.jpg",
+      "images": "src/mocks/productImages/samsung-odyssey-neo-g9-57-240hz-min.jpg"
+    },
+    {
+      "id": 15,
+      "title": "Razer Huntsman Mini 60%",
+      "description": "Marca: Razer\nTipo de Teclado: Mecanico\nLED: RGB\nTipo de Switch: Razer Optical Analogico",
+      "price": 65000,
+      "stock": 20,
+      "type": "peripherals",
+      "category": "keyboards",
+      "thumbnail": "src/mocks/productImages/razer-huntsman-mini-60-switch-analogo-norm.jpg",
+      "images": "src/mocks/productImages/razer-huntsman-mini-60-switch-analogo-min.jpg"
+    },
+    {
+      "id": 16,
+      "title": "GLORIOUS MODEL D MINUS",
+      "description": "Marca: Glorious\nDPI: 12000\nPixart® 3360 Sensor",
+      "price": 24000,
+      "stock": 20,
+      "type": "peripherals",
+      "category": "keyboards",
+      "thumbnail": "src/mocks/productImages/glorious-model-d-minus-matte-white-61g-norm.jpg",
+      "images": "src/mocks/productImages/glorious-model-d-minus-matte-white-61g-min.jpg"
+    }
+  ]
+}
