@@ -1,18 +1,13 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-function Card({ id, name, imageMin, imageNorm, price, descrip }) {
+function Card({ id, name, imageNorm, price }) {
   const navigate = useNavigate();
 
   const handleCardClick = () => {
     navigate("/Product", {
       state: {
-        title: name,
         id,
-        imageMin,
-        imageNorm,
-        price,
-        descrip,
       },
     });
   };
