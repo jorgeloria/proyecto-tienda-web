@@ -18,4 +18,22 @@ export class JSONHandler {
 			);
 		});
 	}
+
+	public async readProductById(id: number) {
+		const productsData = await this.jsonFilesHelper.readJSONFile();
+		const product = productsData.products.find((product: any) => product.id === id);
+		if (!product) {
+			throw new Error("Product not found");
+		}
+		return new Product(
+				product.id,
+				product.title,
+				product.description,
+				product.price,
+				product.stock,
+				product.category,
+				product.images,
+				product.thumbnail
+		);
+	}
 }

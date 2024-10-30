@@ -12,7 +12,7 @@ function Card({ id, name, imageMin, imageNorm, price, descrip }) {
         imageMin,
         imageNorm,
         price,
-        descrip
+        descrip,
       },
     });
   };

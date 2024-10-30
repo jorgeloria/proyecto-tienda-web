@@ -1,27 +1,44 @@
-import React from 'react'
-import { useLocation } from 'react-router-dom';
-import DetailsProduct from '../components/DetailsProduct';
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import DetailsProduct from "../components/DetailsProduct";
+import ProductService from "../services/ProductService";
 
 const Product = () => {
+  const [gottenProduct, setProduct] = useState({});
   const location = useLocation();
   const product = location.state || {};
 
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const data = await ProductService.getProductById(product.id);
+        setProduct(data);
+      } catch (err) {
+        setError("Error al cargar el producto");
+        console.error(err);
+      }
+    };
+
+    fetchProduct();
+  }, []);
+
+  const fallbackData = "failed to fetch product data";
+  console.log(gottenProduct);
+
   return (
     <>
-        <DetailsProduct
-          id={product.id}
-          name={product.title}
-          imageMin={product.imageMin} 
-          imageNorm={product.imageNorm}
-          price={product.price}
-          description={product.descrip} 
-          stock={"inStock"} 
-          details={"M"}
-        />
+      <DetailsProduct
+        id={gottenProduct.id || fallbackData}
+        name={gottenProduct.title || fallbackData}
+        imageMin={gottenProduct.thumbnail || fallbackData}
+        imageNorm={gottenProduct.images || fallbackData}
+        price={gottenProduct.price || fallbackData}
+        description={gottenProduct.description || fallbackData}
+        stock={"inStock" || fallbackData}
+        details={"M" || fallbackData}
+      />
     </>
-    
   );
-}
+};
 
-export default Product
-
+export default Product;
