@@ -1,10 +1,12 @@
 import { JSONFilesHelper } from "../filesHelpers/JSONFilesHelper";
 import { Product } from "../class/product";
+import { User } from "../class/user";
+
 export class JSONHandler {
 	private jsonFilesHelper = new JSONFilesHelper();
 
 	public async readProducts() {
-		const productsData  = await this.jsonFilesHelper.readJSONFile();
+		const productsData  = await this.jsonFilesHelper.readProductJSONFile();
 		return productsData.products.map((product: any) => {
 			return new Product(
 					product.id,
@@ -20,7 +22,7 @@ export class JSONHandler {
 	}
 
 	public async readProductById(id: number) {
-		const productsData = await this.jsonFilesHelper.readJSONFile();
+		const productsData = await this.jsonFilesHelper.readProductJSONFile();
 		const product = productsData.products.find((product: any) => product.id === id);
 		if (!product) {
 			throw new Error("Product not found");
@@ -34,6 +36,32 @@ export class JSONHandler {
 				product.category,
 				product.images,
 				product.thumbnail
+		);
+	}
+
+	public async readUsers() {
+		const usersData = await this.jsonFilesHelper.readUserJSONFile();
+		return usersData.users.map((user: any) => {
+			return new User(
+					user.id,
+					user.name,
+					user.email,
+					user.password
+			);
+		});
+	}
+
+	public async readUserById(id: number) {
+		const usersData = await this.jsonFilesHelper.readUserJSONFile();
+		const user = usersData.users.find((user: any) => user.id === id);
+		if (!user) {
+			throw new Error("User not found");
+		}
+		return new User(
+				user.id,
+				user.name,
+				user.email,
+				user.password
 		);
 	}
 }

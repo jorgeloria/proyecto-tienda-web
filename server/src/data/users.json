@@ -1,0 +1,18 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "name": "John Doe",
+            "email": "John.Doe@ucr.ac.cr",
+            "password": "123456",
+            "role": "admin"
+        },
+        {
+            "id": 2,
+            "name": "Jane Doe",
+            "email": "Jane.Doe@ucr.ac.cr",
+            "password": "123456",
+            "role": "user"
+        }
+    ]
+}

@@ -1,8 +1,9 @@
 import { Request, Response } from "express";
+import { DataAccess } from "../access/dataAccess";
 
 
 export class UserController {
-
+  dataAccess = new DataAccess();
 // greeting: string;
 
 // constructor(message: string) {
@@ -25,10 +26,21 @@ export class UserController {
   // login a user
   public async doLogin(req: Request, res: Response) {
     try {
-      return res.status(200).json({
-        message: "User logged in successfully",
-      });
+      const { email, password } = req.body;
+      if (!email || !password) {
+        return res.status(400).json({
+          message: "Email and password are required",
+        });
+      }
+      const user = await this.dataAccess.attemptLogin(email, password);
+      return res.status(200).json(user);
     } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : "An unknown error occurred";
+      if (errorMessage === "User not found") {
+        return res.status(401).json({
+          message: errorMessage,
+        });
+      }
       return res.status(500).json({
         message: "Internal Server Error",
       });
