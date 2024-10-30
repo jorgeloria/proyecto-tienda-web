@@ -30,8 +30,8 @@ const Product = () => {
       <DetailsProduct
         id={gottenProduct.id || fallbackData}
         name={gottenProduct.title || fallbackData}
-        imageMin={gottenProduct.thumbnail || fallbackData}
-        imageNorm={gottenProduct.images || fallbackData}
+        imageMin={gottenProduct.images || fallbackData}
+        imageNorm={gottenProduct.thumbnail || fallbackData}
         price={gottenProduct.price || fallbackData}
         description={gottenProduct.description || fallbackData}
         stock={"inStock" || fallbackData}

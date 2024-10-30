@@ -42,10 +42,8 @@ const Category = () => {
                 key={product.id}
                 id={product.id}
                 name={product.title}
-                imageMin={product.images}
                 imageNorm={product.thumbnail}
                 price={product.price}
-                descrip={product.description}
               />
             ))}
           </div>
