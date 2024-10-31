@@ -49,6 +49,7 @@ export class UserController {
         });
       }
       const user = await this.dataAccess.attemptLogin(email, password);
+      this.saveSession(req, email);
       return res.status(200).json(user);
     } catch (error: any) {
       const errorMessage = error instanceof Error ? error.message : "An unknown error occurred";
@@ -62,6 +63,11 @@ export class UserController {
           errors: error["errors"]
       });
     }
+  }
+
+  private saveSession(req :Request, username: string){
+    req.session.isLoggedIn = true;
+    req.session.username = username;
   }
 
 }
