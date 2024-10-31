@@ -1,18 +1,22 @@
 {
-    "users": [
-        {
-            "id": 1,
-            "name": "John Doe",
-            "email": "John.Doe@ucr.ac.cr",
-            "password": "123456",
-            "role": "admin"
-        },
-        {
-            "id": 2,
-            "name": "Jane Doe",
-            "email": "Jane.Doe@ucr.ac.cr",
-            "password": "123456",
-            "role": "user"
-        }
-    ]
+  "users": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "email": "John.Doe@ucr.ac.cr",
+      "password": "123456"
+    },
+    {
+      "id": 2,
+      "name": "Jane Doe",
+      "email": "Jane.Doe@ucr.ac.cr",
+      "password": "123456"
+    },
+    {
+      "id": 3,
+      "name": "Fray",
+      "email": "fray.abrahams@ucr.ac.cr",
+      "password": "qwe123"
+    }
+  ]
 }

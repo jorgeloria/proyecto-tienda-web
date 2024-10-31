@@ -64,4 +64,16 @@ export class JSONHandler {
 				user.password
 		);
 	}
+
+	public async appendUser(newUser: User) {
+		try {
+			const users = await this.readUsers();
+			users.push(newUser);
+			const data = JSON.stringify({ users }, null, 2);
+			await this.jsonFilesHelper.writeUserJSONFile(data);
+			return true;
+		} catch (error) {
+			return false;
+		}
+	}
 }
