@@ -13,10 +13,29 @@ export class UserController {
   // register a new user
   public async doRegister(req: Request, res: Response) {
     try {
+      const { name, email, password } = req.body;
+
+      if (!name || !email || !password) {
+        return res.status(400).json({
+          message: "Name, email and password are required",
+        });
+      }
+
+
+      await this.dataAccess.registerUser(name, email, password);
+
+
       return res.status(200).json({
         message: "User registered successfully",
       });
     } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : "An unknown error occurred";
+      console.log("[User Controller]" + errorMessage);
+      if (errorMessage === "User already exists") {
+        return res.status(409).json({
+          message: errorMessage,
+        });
+      }
       return res.status(500).json({
         message: "Internal Server Error",
       });

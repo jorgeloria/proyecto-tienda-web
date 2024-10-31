@@ -21,6 +21,29 @@ export class DataAccess {
 		if (!user) {
 			throw new Error("User not found");
 		}
+		user.password = "";
 		return user;
+	}
+
+	public async registerUser(name: string, email: string, password: string) {
+		const users = await this.jsonHandler.readUsers();
+		const user = users.find((user: any) => user.email === email);
+		if (user) {
+			throw new Error("User already exists");
+		}
+
+
+		const id = users.length + 1;
+		const newUser = {
+			id,
+			name,
+			email,
+			password,
+		};
+	
+		const success = this.jsonHandler.appendUser(newUser);
+		if (!success) {
+			throw new Error("Failed to register user");
+		}
 	}
 }
