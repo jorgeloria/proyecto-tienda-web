@@ -22,7 +22,7 @@ function Card({ id, name, imageNorm, price }) {
       </figure>
       <div className="card-body items-center text-center">
         <h2 className="card-title">{name}</h2>
-        <p>₡{price}</p>
+        <p>₡ {price.toLocaleString("es-CR")}</p>
       </div>
     </div>
   );

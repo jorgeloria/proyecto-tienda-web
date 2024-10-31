@@ -50,10 +50,10 @@ const ShoppingCart = () => {
           <h1 className='header row-span-2 text-4xl text-center align-center mt-4'>Resumen</h1>
           <table className="table summary-table row-span-6 text-base mx-4">
             <tbody>
-              <SummaryItem name={"Subtotal"} value={subtotal.toFixed(2)} />
-              <SummaryItem name={"Envío"} value={envio.toFixed(2)} />
-              <SummaryItem name={"IVA"} value={iva.toFixed(2)} />
-              <SummaryItem name={"Total"} value={total.toFixed(2)} />
+              <SummaryItem name={"Subtotal"} value={subtotal} />
+              <SummaryItem name={"Envío"} value={envio} />
+              <SummaryItem name={"IVA"} value={iva} />
+              <SummaryItem name={"Total"} value={total} />
             </tbody>
           </table>
           <Link to="/CheckoutPage">
