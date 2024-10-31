@@ -9,9 +9,8 @@ import styles from './SignUpForm.module.css'
 import { useState } from "react";
 
 const registerUser = async (data) => {
-    console.log("Name: " + data.name)
     try {
-        const response = await axios.post("http:localhost:3001/user/register",
+        const response = await axios.post("http://localhost:3001/user/register",
             {
                 name: data.name,
                 email: data.email,
