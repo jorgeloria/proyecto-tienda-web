@@ -7,7 +7,7 @@ import { useCart } from '../hooks/useCart';
 import { Link } from 'react-router-dom';
 
 const ShoppingCart = () => {
-  const { cart, clearCart } = useCart();
+  const { cart } = useCart();
   
   const subtotal = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
   const envio = 6000;
