@@ -1,26 +1,15 @@
 import React from "react";
 
-import axios from "axios";
 import Button from '../Button/Button';
 
 import SignUpField from "./SignUpField";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import styles from './SignUpForm.module.css'
 import { useState } from "react";
-
-const registerUser = async (data) => {
-    try {
-        const response = await axios.post("http://localhost:3001/user/register",
-            {
-                name: data.name,
-                email: data.email,
-                password: data.password
-            }
-        )
-    } catch(error) {
-        console.log(error)
-    }
-}
+import RegisterUser from "../../services/RegisterService";
 
 const verifyFullName = (name) => {
     if (name.length === 0) {
@@ -100,7 +89,18 @@ const SignUpForm = () => {
         if (verifyInputs()) {
             // send to backend
             console.log("Los datos son válidos")
-            registerUser(formData)
+            const result = await RegisterUser(formData)
+            if(result !== "SUCCESS") {
+                toast.error("El usuario ya está registrado", {
+                    position: 'bottom-right',
+                    theme: 'dark'
+                })
+            } else {
+                toast.success("¡Registro exitoso!", {
+                    position: 'bottom-right',
+                    theme: 'dark'
+                })
+            }
         } else {
             // do nothing?
             console.log("Hay errores en el formulario")
@@ -153,6 +153,7 @@ const SignUpForm = () => {
                 <div className="row text-center ">
                     <Button type="button" onClick={handleAccountRegistration}>Crear Cuenta</Button>
                 </div>
+                <ToastContainer/>
             </div>
         </form>
 
