@@ -1,14 +1,10 @@
 import { Request, Response } from "express";
 import { DataAccess } from "../access/dataAccess";
 
+import { UserLoginSchema } from "../validations/Login";
 
 export class UserController {
   dataAccess = new DataAccess();
-// greeting: string;
-
-// constructor(message: string) {
-//   this.greeting = message;
-// } 
 
   // register a new user
   public async doRegister(req: Request, res: Response) {
@@ -45,7 +41,8 @@ export class UserController {
   // login a user
   public async doLogin(req: Request, res: Response) {
     try {
-      const { email, password } = req.body;
+      const validatedUser = UserLoginSchema.parse(req.body);
+      const { email, password } = validatedUser;
       if (!email || !password) {
         return res.status(400).json({
           message: "Email and password are required",
@@ -53,15 +50,16 @@ export class UserController {
       }
       const user = await this.dataAccess.attemptLogin(email, password);
       return res.status(200).json(user);
-    } catch (error) {
+    } catch (error: any) {
       const errorMessage = error instanceof Error ? error.message : "An unknown error occurred";
       if (errorMessage === "User not found") {
         return res.status(401).json({
           message: errorMessage,
         });
       }
-      return res.status(500).json({
-        message: "Internal Server Error",
+      return res.status(403).json({
+          message: "Forbidden",
+          errors: error["errors"]
       });
     }
   }
