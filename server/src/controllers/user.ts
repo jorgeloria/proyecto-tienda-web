@@ -3,6 +3,8 @@ import { DataAccess } from "../access/dataAccess";
 
 import { UserLoginSchema } from "../validations/Login";
 
+const jwt = require('jsonwebtoken')
+
 export class UserController {
   dataAccess = new DataAccess();
 
@@ -47,8 +49,8 @@ export class UserController {
         });
       }
       const user = await this.dataAccess.attemptLogin(email, password);
-      this.saveSession(req, email);
-      return res.status(200).json(user);
+      let token = await this.saveSession(req, email);
+      return res.status(200).json({"token":token, "username": email});
     } catch (error: any) {
       const errorMessage = error instanceof Error ? error.message : "An unknown error occurred";
       if (errorMessage === "User not found") {
@@ -63,9 +65,12 @@ export class UserController {
     }
   }
 
-  private saveSession(req :Request, username: string){
-    // req.session.isLoggedIn = true;
-    // req.session.username = username;
+  private async saveSession(req :Request, username: string){
+    let privateKey = process.env.PRIVATE_KEY || "some-private-key";
+    let token = await jwt.sign({username: username},privateKey, {
+      expiresIn: '1h'
+    } );
+    return token;
   }
 
 }
