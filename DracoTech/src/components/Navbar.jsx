@@ -1,12 +1,37 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import logo from "../images/logo_primary_color-transparent.png";
 import "../styles/Navbar.css";
 import CategoryItem from "./Navbar/CategoryItem";
 import SidebarCategoryItem from "./Navbar/SidebarCategoryItem";
 import SubCategoryItem from "./Navbar/SubCategoryItem";
+import LoginService from "../services/LoginService";
+
 
 const Navbar = () => {
+
+ 
+
+  const [isActive, setIsActive] = useState(false);
+
+useEffect(() => {
+  const isUserActive = async () => {
+    try {
+      const token = await LoginService.getToken();  
+      const resp = await LoginService.isActive(token);
+      console.log(resp);
+      setIsActive(resp);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  isUserActive();
+}, []);
+
+
+
+
+
   return (
     <div className="drawer">
       <input
@@ -38,11 +63,9 @@ const Navbar = () => {
             </svg>
           </label>
           {/* Navbar Logo */}
-          <div className="w-16 mx-5 rounded" role="button">
             <Link to="/" className="m-0 p-0">
-              <img src="src/assets/PrimaryLogoVect.svg" alt="" />
+              <img src={logo} alt="" width={60} className="w-16 mx-5"/>
             </Link>
-          </div>
           {/* Navbar Categories */}
           <div className="navbar-categories lg:block w-full mx-10">
             <ul className="navbar-category-list menu menu-horizontal invisible lg:visible flex lg:justify-evenly">
@@ -209,14 +232,18 @@ const Navbar = () => {
             <div className="w-7 mx-4 pt-1 btn-sm btn-ghost btn-square">
               <img src="/src/images/search.png" alt="search icon" />
             </div>
-            <Link to="/ShoppingCart">
+            {/*isActive ? (
+            ) : (<></>)*/}
+
+              <Link to="/ShoppingCart">
               <div className="w-9 mx-4 btn-sm btn-ghost btn-square">
                 <img
                   src="/src/images/shopping-cart.png"
                   alt="shopping cart icon"
-                />
+                  />
               </div>
             </Link>
+
             <div className="w-9 ml-4 btn-sm btn-ghost btn-circle">
               {/* // TODO(Any): Revisar esto. Copié esto de arriba porque la navbar no tenía un link en este ícono. */}
               <Link to="/Account" className="m-0 p-0">

@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import BannerCarousel from "../components/Carousels/BannerCarousel";
 import TitledCardCarousel from "../components/Carousels/TitledCardCarousel";
 import BannerAd from "../components/BannerAd";
+import ProductService from "../services/ProductService";
 
 const CardData = [
   { name: "Card 1", image: "/src/assets/Rtx4047.png", price: 100 },
@@ -20,11 +21,26 @@ const BannerAdData = {
 };
 
 const Home = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const data = await ProductService.getProducts();
+        setProducts(data);
+      } catch (err) {
+        setError("Error al cargar los productos");
+        console.error(err);
+      }
+    };
+    fetchProducts();
+  }, []);
+
   return (
     <div>
       <BannerCarousel />
-      <TitledCardCarousel CardData={CardData} Title="Ofertas" />
-      <TitledCardCarousel CardData={CardData} Title="Productos nuevos" />
+      <TitledCardCarousel CardData={products} Title="Ofertas" />
+      <TitledCardCarousel CardData={products} Title="Productos nuevos" />
       <BannerAd
         imageSrc={BannerAdData.imageSrc}
         imageAlt={BannerAdData.imageAlt}

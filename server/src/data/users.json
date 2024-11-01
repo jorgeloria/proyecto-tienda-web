@@ -1,0 +1,46 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "email": "John.Doe@ucr.ac.cr",
+      "password": "123456"
+    },
+    {
+      "id": 2,
+      "name": "Jane Doe",
+      "email": "Jane.Doe@ucr.ac.cr",
+      "password": "123456"
+    },
+    {
+      "id": 3,
+      "name": "Fray",
+      "email": "fray.abrahams@ucr.ac.cr",
+      "password": "qwe123"
+    },
+    {
+      "id": 4,
+      "name": "Olivia",
+      "email": "oliviathegamer@gmail.com",
+      "password": "pib"
+    },
+    {
+      "id": 5,
+      "name": "jorge.lorialopez@ucr.ac.cr",
+      "email": "jorge.lorialopez@ucr.ac.cr",
+      "password": "123"
+    },
+    {
+      "id": 6,
+      "name": "mosies",
+      "email": "moise@gmail.com",
+      "password": "1234"
+    },
+    {
+      "id": 7,
+      "name": "zxc asd qwe",
+      "email": "zxc@qwe.asd",
+      "password": "asdqwe"
+    }
+  ]
+}

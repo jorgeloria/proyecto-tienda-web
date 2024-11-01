@@ -1,90 +1,92 @@
-import React from 'react';
-
-import Monitor from "/src/images/Monitor.png"
-
-import "../styles/ShoppingCart.css"
-
+import React, { useId, useState, useEffect } from 'react';
+import "../styles/ShoppingCart.css";
 import ShoppingCartItem from '../components/ShoppingCart/ShoppingCartItem';
 import SummaryItem from '../components/ShoppingCart/SummaryItem';
 import Button from '../components/Button/Button';
+import { useCart } from '../hooks/useCart';
+import { Link } from 'react-router-dom';
+import LoginService from "../services/LoginService";
 
 const ShoppingCart = () => {
+  const [isActive, setIsActive] = useState(false);
+  const [loading, setLoading] = useState(true); 
+  
+  useEffect(() => {
+    const isUserActive = async () => {
+      try {
+        const token = await LoginService.getToken();  
+        const resp = await LoginService.isActive(token);
+        console.log(resp);
+        setIsActive(resp);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false); 
+      }
+    };
+    isUserActive();
+  }, []);
+  
+  const { cart } = useCart();
+  
+  const subtotal = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  const envio = 6000;
+  const iva = subtotal * 0.13;
+  const total = subtotal + envio + iva;
+  
+
+  if (!loading && !isActive) {
+    window.location.href = '/';
+  }
   return (
-  <>
-    <div className="shopping-cart-grid grid md:grid-cols-12 2xl:mx-48 lg:mx-16 mt-20 overflow-x-auto">
-      <div className="products-section lg:col-span-7 overflow-x-auto">
-        <h1 className="header text-4xl my-4">Mi Carrito</h1>
-        <table className="table cart-table text-base">
-          <thead className="invisible md:visible text-base text-white">
-            <tr>
-              <th></th> {/*Product Image*/}
-              <th>Producto</th>
-              <th>Precio</th>
-              <th>Cantidad</th>
-              <th>Subtotal</th>
-              <th></th> {/*Trash Icon*/}
-            </tr>
-          </thead>
-          <tbody>
-            <ShoppingCartItem 
-              image={"/src/images/Monitor.png"}
-              alt={"Imagen de un monitor"}
-              name={"XIAOMI A22I 21.5” - 6MS - 75HZ - 1920X1080"}
-              price={"39,900"}
-              quantity={3}
-              subtotal={"119,700"}
-            />
-            <ShoppingCartItem 
-              image={"/src/images/Headphones.png"}
-              alt={"Imagen de unos audífonos"}
-              name={"CORSAIR HS80 RGB USB - CARBON"}
-              price={"49,500"}
-              quantity={2}
-              subtotal={"99,000"}
-            />
-            <ShoppingCartItem 
-              image={"/src/images/Console.png"}
-              alt={"Imagen de una consola"}
-              name={"PLAYSTATION 5 (PS5) SLIM EDICION DISCO"}
-              price={"325,000"}
-              quantity={1}
-              subtotal={"325,000"}
-            />
-          </tbody>
-        </table>
+    <>
+      <div className="shopping-cart-grid grid md:grid-cols-12 2xl:mx-48 lg:mx-16 mt-20 overflow-x-auto">
+        <div className="products-section lg:col-span-7 overflow-x-auto">
+          <h1 className="header text-4xl my-4">Mi Carrito</h1>
+          <table className="table cart-table text-base">
+            <thead className="invisible md:visible text-base text-white">
+              <tr>
+                <th></th> {/* Imagen del producto */}
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Subtotal</th>
+                <th></th> {/* Ícono de basura */}
+              </tr>
+            </thead>
+            <tbody>
+              {cart.map((item) => (
+                <ShoppingCartItem
+                  key={item.id}
+                  id={item.id}
+                  imageMin={item.imageMin}
+                  alt={item.name}
+                  name={item.name}
+                  price={item.price}
+                  quantity={item.quantity}
+                  subtotal={item.price * item.quantity}
+                />
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div className="summary-section md:col-span-5 grid md:grid-rows-12 mx-10 px-4 bg-Card_color rounded-lg">
+          <h1 className='header row-span-2 text-4xl text-center align-center mt-4'>Resumen</h1>
+          <table className="table summary-table row-span-6 text-base mx-4">
+            <tbody>
+              <SummaryItem name={"Subtotal"} value={subtotal} />
+              <SummaryItem name={"Envío"} value={envio} />
+              <SummaryItem name={"IVA"} value={iva} />
+              <SummaryItem name={"Total"} value={total} />
+            </tbody>
+          </table>
+          <Link to="/CheckoutPage">
+            <Button classNameValue="w-full h-16 text-xl">Pagar</Button>
+          </Link>
+        </div>
       </div>
-
-      
-
-      <div className="summary-section md:col-span-5 flex grid md:grid-rows-12 mx-10 px-4 bg-Card_color rounded-lg">
-        <h1 className='header row-span-2 text-4xl text-center align-center mt-4'>Resumen</h1>
-        <table className="table summary-table row-span-6 text-base mx-4">
-          <tbody>
-            <SummaryItem
-              name={"Subtotal"}
-              value={"543,700"}
-            />
-            <SummaryItem
-              name={"Envío"}
-              value={"6,000"}
-            />
-            <SummaryItem
-              name={"IVA"}
-              value={"62,549"}
-            />
-            <SummaryItem
-              name={"Total"}
-              value={"549,700"}
-            />
-          </tbody>
-        </table>
-        <Button classNameValue="w-full h-16 text-xl">Pagar</Button>
-      </div>
-    </div>
-  </>);
-
-  
-  
+    </>
+  );
 };
 
 export default ShoppingCart;
