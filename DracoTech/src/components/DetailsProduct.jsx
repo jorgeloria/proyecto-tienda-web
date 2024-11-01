@@ -1,7 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useCart } from "../hooks/useCart";
+import LoginService from "../services/LoginService";
 
 function DetailsProduct({ id, name, imageMin, imageNorm, price, description, stock, details }) {
+
+  const [isActive, setIsActive] = useState(false);
+
+useEffect(() => {
+  const isUserActive = async () => {
+    try {
+      const token = await LoginService.getToken();  
+      const resp = await LoginService.isActive(token);
+      console.log(resp);
+      setIsActive(resp);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  isUserActive();
+}, []);
+
   const { addToCart } = useCart();
   
   const handleAddToCart = () => {
@@ -46,12 +64,14 @@ function DetailsProduct({ id, name, imageMin, imageNorm, price, description, sto
             )}
           </div>
 
-          <button
-            className="btn bg-Tertiary_color hover:bg-Tertiary_color text-lg text-white w-full  rounded-md shadow-md transition duration-300 ease-in-out"
-            onClick={handleAddToCart}
-          >
+            {isActive ? (
+              <button
+              className="btn bg-Tertiary_color hover:bg-Tertiary_color text-lg text-white w-full  rounded-md shadow-md transition duration-300 ease-in-out"
+              onClick={handleAddToCart}
+              >
             Agregar al carrito
-          </button>
+          </button>) : (<></>)
+          }
         </div>
       </div>
     </div>
