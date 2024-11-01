@@ -65,10 +65,18 @@ export class UserController {
     }
   }
 
+  public async doLogout(req : Request, res : Response){
+    const bearerHeader = req.headers['authorization'];
+    if(typeof bearerHeader !== 'undefined') {
+      const bearerToken = bearerHeader.split(' ')[1];
+    }
+    return res.sendStatus(200);
+  }
+
   private async saveSession(req :Request, username: string){
     let privateKey = process.env.PRIVATE_KEY || "some-private-key";
     let token = await jwt.sign({username: username},privateKey, {
-      expiresIn: '1h'
+      expiresIn: '1m'
     } );
     return token;
   }

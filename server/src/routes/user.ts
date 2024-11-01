@@ -13,3 +13,7 @@ UserRouter.post("/register", (req: Request, res: Response)=>{
 UserRouter.post("/login", (req: Request, res: Response)=>{
     userController.doLogin(req, res);
 });
+
+UserRouter.post("/logout", (req: Request, res: Response)=>{
+    userController.doLogout(req, res);
+})
