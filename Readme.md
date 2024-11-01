@@ -19,3 +19,9 @@ necesitar instalar las dependencias mediante los
 siguientes comandos:
 
 - `npm install`
+
+## Manual de usuario
+
+[Consulta la guía completa aquí](./Documentation/GuiaUso.md)
+
+## Diseño 

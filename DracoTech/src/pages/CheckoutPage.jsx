@@ -49,12 +49,12 @@ const CheckoutPage = () => {
               />
             ))}
           </div>
-          <table className="table summary-table row-span-6 text-base mx-4">
+          <table className="table summary-table row-span-6 text-base ">
             <tbody>
-              <SummaryItem name={"Subtotal"} value={subtotal.toFixed(2)} />
-              <SummaryItem name={"Envío"} value={envio.toFixed(2)} />
-              <SummaryItem name={"IVA"} value={iva.toFixed(2)} />
-              <SummaryItem name={"Total"} value={total.toFixed(2)} />
+              <SummaryItem name={"Subtotal"} value={subtotal} />
+              <SummaryItem name={"Envío"} value={envio} />
+              <SummaryItem name={"IVA"} value={iva} />
+              <SummaryItem name={"Total"} value={total} />
             </tbody>
           </table>
           <button className="btn bg-Tertiary_color hover:bg-Tertiary_color text-white w-full border-none "

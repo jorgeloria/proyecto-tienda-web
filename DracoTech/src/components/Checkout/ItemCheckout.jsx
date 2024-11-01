@@ -8,7 +8,7 @@ export default function ItemCheckout({imageMin, name, price}) {
         <span className="flex-grow ml-4">
           {name}
         </span>
-        <span>₡{price}</span>
+        <span>₡ {price.toLocaleString("es-CR")}</span>
       </div>
     </>
   );

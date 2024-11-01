@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Card from "../components/Card";
 import Filters from "../components/Filters";
-import ProductService from "../services/ProductService"; // Asegúrate de que la ruta sea correcta
+import ProductService from "../services/ProductService";
 
 const Category = () => {
   const [products, setProducts] = useState([]);
@@ -42,10 +42,8 @@ const Category = () => {
                 key={product.id}
                 id={product.id}
                 name={product.title}
-                imageMin={product.images}
                 imageNorm={product.thumbnail}
                 price={product.price}
-                descrip={product.description}
               />
             ))}
           </div>

@@ -1,18 +1,13 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-function Card({ id, name, imageMin, imageNorm, price, descrip }) {
+function Card({ id, name, imageNorm, price }) {
   const navigate = useNavigate();
 
   const handleCardClick = () => {
     navigate("/Product", {
       state: {
-        title: name,
         id,
-        imageMin,
-        imageNorm,
-        price,
-        descrip
       },
     });
   };
@@ -27,7 +22,7 @@ function Card({ id, name, imageMin, imageNorm, price, descrip }) {
       </figure>
       <div className="card-body items-center text-center">
         <h2 className="card-title">{name}</h2>
-        <p>₡{price}</p>
+        <p>₡ {price.toLocaleString("es-CR")}</p>
       </div>
     </div>
   );

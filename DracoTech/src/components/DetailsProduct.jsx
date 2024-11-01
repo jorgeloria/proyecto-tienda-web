@@ -29,7 +29,7 @@ function DetailsProduct({ id, name, imageMin, imageNorm, price, description, sto
         </div>
         <div className="md:w-1/2 p-6">
           <h1 className="text-4xl font-bold text-white mb-2">{name}</h1>
-          <h2 className="text-3xl text-white font-bold mb-4">₡{price}</h2>
+          <h2 className="text-3xl text-white font-bold mb-4">₡ {price.toLocaleString("es-CR")}</h2>
 
           <div className="text-lg text-Text_color mb-6">
             {description.split("\n").map((line, index) => (
