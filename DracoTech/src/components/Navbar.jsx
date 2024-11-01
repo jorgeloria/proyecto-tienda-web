@@ -232,17 +232,16 @@ useEffect(() => {
             <div className="w-7 mx-4 pt-1 btn-sm btn-ghost btn-square">
               <img src="/src/images/search.png" alt="search icon" />
             </div>
-            {/*isActive ? (
-            ) : (<></>)*/}
-
+            {isActive ? (
               <Link to="/ShoppingCart">
-              <div className="w-9 mx-4 btn-sm btn-ghost btn-square">
-                <img
-                  src="/src/images/shopping-cart.png"
-                  alt="shopping cart icon"
-                  />
-              </div>
-            </Link>
+                <div className="w-9 mx-4 btn-sm btn-ghost btn-square">
+                  <img
+                    src="/src/images/shopping-cart.png"
+                    alt="shopping cart icon"
+                    />
+                </div>
+              </Link>
+            ) : (<></>)} 
 
             <div className="w-9 ml-4 btn-sm btn-ghost btn-circle">
               {/* // TODO(Any): Revisar esto. Copié esto de arriba porque la navbar no tenía un link en este ícono. */}
