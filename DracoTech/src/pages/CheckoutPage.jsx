@@ -22,6 +22,50 @@ const CheckoutPage = () => {
 
   const total = subtotal + envio + iva;
 
+  const handleCheckoutPageClick = () => {
+    var flag = true
+    if(document.getElementById('email').value.trim() ===""){
+      flag = false
+    }
+    if(document.getElementById('Nombre').value.trim() ===""){
+      flag = false
+
+    }
+    if(document.getElementById('Apellido').value.trim() ===""){
+      flag = false
+    }
+    if(document.getElementById('Direction').value.trim() ===""){
+      flag = false
+    }
+    if(document.getElementById('Provincia').value.trim() ===""){
+      flag = false
+    }
+    if(document.getElementById('Ciudad').value.trim() ===""){
+      flag = false
+    }
+    if(document.getElementById('Region').value.trim() ===""){
+      flag = false
+    }
+    if(document.getElementById('Telefono').value.trim() ===""){
+      flag = false
+    }
+    if(document.getElementById('numCard').value.trim() ===""){
+      flag = false
+    }
+    if(document.getElementById('expi').value.trim() ===""){
+      flag = false
+    }
+    if(document.getElementById('cvv').value.trim() ===""){
+      flag = false
+    }
+    if(document.getElementById('nameCard').value.trim() ===""){
+      flag = false
+    }
+    if(flag){
+      document.getElementById('FinCompra').showModal()
+    }
+  };
+
   return (
     <div className="min-h-screen bg-BG_color text-white flex justify-center items-center">
       <div className="w-full max-w-5xl p-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -58,7 +102,7 @@ const CheckoutPage = () => {
             </tbody>
           </table>
           <button className="btn bg-Tertiary_color hover:bg-Tertiary_color text-white w-full border-none "
-          onClick={()=>document.getElementById('FinCompra').showModal()}>
+          onClick={handleCheckoutPageClick}>
             Pagar
           </button>
           <dialog id="FinCompra" className="modal">
