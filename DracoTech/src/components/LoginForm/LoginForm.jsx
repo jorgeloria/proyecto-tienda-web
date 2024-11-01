@@ -3,6 +3,7 @@ import Button from '../Button/Button';
 
 import styles from './LoginForm.module.css'
 import LoginService from "../../services/LoginService";
+import { Link } from "react-router-dom";
 
 class LoginForm extends Component{
     constructor() {
