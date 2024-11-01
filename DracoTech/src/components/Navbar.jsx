@@ -63,11 +63,9 @@ useEffect(() => {
             </svg>
           </label>
           {/* Navbar Logo */}
-          <div className="w-16 mx-5 rounded" role="button">
             <Link to="/" className="m-0 p-0">
-              <img src="src/assets/PrimaryLogoVect.svg" alt="" />
+              <img src={logo} alt="" width={60} className="w-16 mx-5"/>
             </Link>
-          </div>
           {/* Navbar Categories */}
           <div className="navbar-categories lg:block w-full mx-10">
             <ul className="navbar-category-list menu menu-horizontal invisible lg:visible flex lg:justify-evenly">
