@@ -48,3 +48,5 @@ Como parte de una experiencia más gratificante y personalizada puedes crear una
 El sistema actualmente se encuentra trabajando con un servidor que no tiene una conexión a una base de datos, por lo que el próximo cambio necesario en el sistema, es la implementación de una base de datos donde se puedan poner los productos y los usuarios para optimizar el funcionamiento del mismo, al mismo tiempo que se brinda una capa mas de seguridad a la integridad de los datos.
 
 Además de eso se podría realizar una factorización de los datos de los usuarios en caso de necesitar más de estos y una refactorización de la página de edición de estos ya que se encuentra obsoleta a la fecha.
+
+Actualmente los filtros no estan conectados, dado que el sistema de fitros no escala adecuadamente para dar soportar todas las categorias posibles, se debe refactorizar el sistema de los filtros

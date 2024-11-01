@@ -38,7 +38,7 @@ function CardCarousel({ CardData }) {
       {CardData.map((card, index) => (
         <div className=".card-carousel">
           <SwiperSlide key={index}>
-            <Card name={card.name} image={card.image} price={card.price} />
+            <Card id={card.id} name={card.title} imageNorm={card.thumbnail} price={card.price} />
           </SwiperSlide>
         </div>
       ))}
