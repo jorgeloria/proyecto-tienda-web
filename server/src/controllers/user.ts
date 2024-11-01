@@ -50,7 +50,8 @@ export class UserController {
       }
       const user = await this.dataAccess.attemptLogin(email, password);
       let token = await this.saveSession(req, email);
-      return res.status(200).json({"token":token, "username": email});
+      console.log(token);
+      return res.status(200).json({ "token": token, "username": email });
     } catch (error: any) {
       const errorMessage = error instanceof Error ? error.message : "An unknown error occurred";
       if (errorMessage === "User not found") {
@@ -59,25 +60,25 @@ export class UserController {
         });
       }
       return res.status(403).json({
-          message: "Forbidden",
-          errors: error["errors"]
+        message: "Forbidden",
+        errors: error["errors"]
       });
     }
   }
 
-  public async doLogout(req : Request, res : Response){
+  public async doLogout(req: Request, res: Response) {
     const bearerHeader = req.headers['authorization'];
-    if(typeof bearerHeader !== 'undefined') {
+    if (typeof bearerHeader !== 'undefined') {
       const bearerToken = bearerHeader.split(' ')[1];
     }
     return res.sendStatus(200);
   }
 
-  private async saveSession(req :Request, username: string){
+  private async saveSession(req: Request, username: string) {
     let privateKey = process.env.PRIVATE_KEY || "some-private-key";
-    let token = await jwt.sign({username: username},privateKey, {
+    let token = await jwt.sign({ username: username }, privateKey, {
       expiresIn: '1m'
-    } );
+    });
     return token;
   }
 

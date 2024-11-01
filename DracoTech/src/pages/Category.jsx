@@ -7,19 +7,13 @@ import LoginService from "../services/LoginService";
 const Category = () => {
   const [products, setProducts] = useState([]);
   const [filters,] = useState({
-    category: "processors",
+    category: "all",
     minPrice: 0
   });
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const data = await ProductService.getProducts();
-        const token = LoginService.getToken();
-        console.log(token);
-        
-        const resp = await LoginService.isActive(token);
-
-        console.log(resp)
 
 
         setProducts(data);

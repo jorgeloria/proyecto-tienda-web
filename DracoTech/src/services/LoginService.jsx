@@ -5,7 +5,7 @@ const LoginService = {
 		try {
 			const response = await axios.post("http://localhost:3001/user/login", value);
 			
-			
+			console.log(response.data);
 			if (response.data.token) {
 				localStorage.setItem("authToken", response.data.token);
 			}
@@ -21,13 +21,9 @@ const LoginService = {
 		try {
 		console.log(value)
 		const tokenInfo ={"token": value}
+        // TODO(Any): Si  el POST devuelve un código no 200, se muere todo
 		const response = await axios.post("http://localhost:3001/user/is-active", tokenInfo);
-		console.log("verighjkghjkgficado")
-		if(response.status === 200) {
-			console.log("verificado")
-			return true;
-		}
-		return false;
+        return response.data.result;
 	} catch (error) {
 		console.error("Login error:", error);
 		throw error;

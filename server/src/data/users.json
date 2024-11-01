@@ -35,6 +35,12 @@
       "name": "mosies",
       "email": "moise@gmail.com",
       "password": "1234"
+    },
+    {
+      "id": 7,
+      "name": "zxc asd qwe",
+      "email": "zxc@qwe.asd",
+      "password": "asdqwe"
     }
   ]
 }

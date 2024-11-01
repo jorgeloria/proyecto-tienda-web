@@ -31,7 +31,7 @@ class LoginForm extends Component{
             let result = LoginService.doLogin(loginInfo);
             result.then(response=>{
                 if(response.status == 200){
-                    window.location.href = '/';
+                    //window.location.href = '/';
                 }
               }).catch((res)=>{
                 if(res.status == 401){
