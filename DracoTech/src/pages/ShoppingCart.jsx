@@ -1,19 +1,43 @@
-import React, { useId } from 'react';
+import React, { useId, useState, useEffect } from 'react';
 import "../styles/ShoppingCart.css";
 import ShoppingCartItem from '../components/ShoppingCart/ShoppingCartItem';
 import SummaryItem from '../components/ShoppingCart/SummaryItem';
 import Button from '../components/Button/Button';
 import { useCart } from '../hooks/useCart';
 import { Link } from 'react-router-dom';
+import LoginService from "../services/LoginService";
 
 const ShoppingCart = () => {
+  const [isActive, setIsActive] = useState(false);
+  const [loading, setLoading] = useState(true); 
+  
+  useEffect(() => {
+    const isUserActive = async () => {
+      try {
+        const token = await LoginService.getToken();  
+        const resp = await LoginService.isActive(token);
+        console.log(resp);
+        setIsActive(resp);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false); 
+      }
+    };
+    isUserActive();
+  }, []);
+  
   const { cart } = useCart();
   
   const subtotal = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
   const envio = 6000;
   const iva = subtotal * 0.13;
   const total = subtotal + envio + iva;
+  
 
+  if (!loading && !isActive) {
+    window.location.href = '/';
+  }
   return (
     <>
       <div className="shopping-cart-grid grid md:grid-cols-12 2xl:mx-48 lg:mx-16 mt-20 overflow-x-auto">

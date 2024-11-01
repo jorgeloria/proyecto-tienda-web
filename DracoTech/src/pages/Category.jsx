@@ -2,21 +2,26 @@ import React, { useState, useEffect } from "react";
 import Card from "../components/Card";
 import Filters from "../components/Filters";
 import ProductService from "../services/ProductService";
+import LoginService from "../services/LoginService";
 
 const Category = () => {
   const [products, setProducts] = useState([]);
   const [filters,] = useState({
-    category: "processors",
+    category: "all",
     minPrice: 0
   });
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const data = await ProductService.getProducts();
+
+
         setProducts(data);
+
       } catch (err) {
         setError("Error al cargar los productos");
         console.error(err);
+        console.log("ERROR en categoria");
       }
     };
     fetchProducts();

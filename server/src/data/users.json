@@ -25,10 +25,22 @@
       "password": "pib"
     },
     {
-      "id":5,
-      "name":"jorge.lorialopez@ucr.ac.cr",
-      "email":"jorge.lorialopez@ucr.ac.cr",
-      "password":"123"
+      "id": 5,
+      "name": "jorge.lorialopez@ucr.ac.cr",
+      "email": "jorge.lorialopez@ucr.ac.cr",
+      "password": "123"
+    },
+    {
+      "id": 6,
+      "name": "mosies",
+      "email": "moise@gmail.com",
+      "password": "1234"
+    },
+    {
+      "id": 7,
+      "name": "zxc asd qwe",
+      "email": "zxc@qwe.asd",
+      "password": "asdqwe"
     }
   ]
 }
