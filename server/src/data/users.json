@@ -23,6 +23,12 @@
       "name": "Olivia",
       "email": "oliviathegamer@gmail.com",
       "password": "pib"
+    },
+    {
+      "id":5,
+      "name":"jorge.lorialopez@ucr.ac.cr",
+      "email":"jorge.lorialopez@ucr.ac.cr",
+      "password":"123"
     }
   ]
 }

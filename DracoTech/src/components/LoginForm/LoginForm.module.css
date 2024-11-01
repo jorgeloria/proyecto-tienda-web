@@ -26,3 +26,12 @@
 .register_link:hover {
     color: #00F1FF;
 }
+
+input:invalid {
+    border: 2px red;
+  }
+  
+  input:invalid:required {
+    border: 2px red!;
+  }
+  

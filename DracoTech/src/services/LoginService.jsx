@@ -1,14 +1,13 @@
+import axios from "axios";
+
 const LoginService = {
     doLogin: function(value) {
-        let result = fetch('http://localhost:3001/user/login', {
-            method: "POST",
-            headers: {
-              'Content-type': 'application/json'
-            },
-            body: JSON.stringify(value)
-          }
-        );
-        return result;
+        
+        const response = axios.post("http://localhost:3001/user/login",
+          value
+        )
+
+        return response;
     },
 
     secondValidationMethod: function(value) {
