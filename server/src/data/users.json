@@ -17,6 +17,12 @@
       "name": "Fray",
       "email": "fray.abrahams@ucr.ac.cr",
       "password": "qwe123"
+    },
+    {
+      "id": 4,
+      "name": "Olivia",
+      "email": "oliviathegamer@gmail.com",
+      "password": "pib"
     }
   ]
 }

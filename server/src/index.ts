@@ -21,6 +21,7 @@ const sessionTimeOutEnvVal = (typeof process.env.SESSION_TIMEOUT !== undefined) 
 const sessionTimeout : number = Number.parseInt( sessionTimeOutEnvVal! ) ; // default de 60 segundos
 
 app.use(cors());
+app.use(express.json())
 
 app.use(express.json());
 
