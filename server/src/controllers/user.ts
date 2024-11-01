@@ -17,9 +17,7 @@ export class UserController {
         });
       }
 
-
       await this.dataAccess.registerUser(name, email, password);
-
 
       return res.status(200).json({
         message: "User registered successfully",
@@ -66,8 +64,8 @@ export class UserController {
   }
 
   private saveSession(req :Request, username: string){
-    req.session.isLoggedIn = true;
-    req.session.username = username;
+    // req.session.isLoggedIn = true;
+    // req.session.username = username;
   }
 
 }
