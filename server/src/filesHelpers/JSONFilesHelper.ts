@@ -19,7 +19,7 @@ export class JSONFilesHelper {
 	public async readUserJSONFile() {
 		try {
 			const data = await fs.readFile(this.userFilePath, "utf-8");
-			console.log("[JSONFilesHelper]\n" + data);
+			//console.log("[JSONFilesHelper]\n" + data);
 			return JSON.parse(data);
 		} catch (error) {
 			console.error("Error reading JSON file:", error);

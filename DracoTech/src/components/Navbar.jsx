@@ -6,7 +6,16 @@ import CategoryItem from "./Navbar/CategoryItem";
 import SidebarCategoryItem from "./Navbar/SidebarCategoryItem";
 import SubCategoryItem from "./Navbar/SubCategoryItem";
 
+
 const Navbar = () => {
+
+ 
+
+
+
+
+
+
   return (
     <div className="drawer">
       <input

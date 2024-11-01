@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Card from "../components/Card";
 import Filters from "../components/Filters";
 import ProductService from "../services/ProductService";
+import LoginService from "../services/LoginService";
 
 const Category = () => {
   const [products, setProducts] = useState([]);
@@ -13,10 +14,20 @@ const Category = () => {
     const fetchProducts = async () => {
       try {
         const data = await ProductService.getProducts();
+        const token = LoginService.getToken();
+        console.log(token);
+        
+        const resp = await LoginService.isActive(token);
+
+        console.log(resp)
+
+
         setProducts(data);
+
       } catch (err) {
         setError("Error al cargar los productos");
         console.error(err);
+        console.log("ERROR en categoria");
       }
     };
     fetchProducts();
