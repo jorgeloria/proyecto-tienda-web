@@ -16,7 +16,7 @@ function CardCarousel({ CardData }) {
       modules={[Navigation, Pagination, Scrollbar, A11y]}
       spaceBetween={60}
       /* //TODO(Fray): Ajustar número de slides */
-      slidesPerView={4}
+      slidesPerView={5}
       navigation={true}
       onSlideChange={() => console.log("slide change")}
       onSwiper={(swiper) => console.log(swiper)}
@@ -36,11 +36,10 @@ function CardCarousel({ CardData }) {
       */
     >
       {CardData.map((card, index) => (
-        <div className=".card-carousel">
           <SwiperSlide key={index}>
             <Card id={card.id} name={card.title} imageNorm={card.thumbnail} price={card.price} />
           </SwiperSlide>
-        </div>
+
       ))}
     </Swiper>
   );
