@@ -27,7 +27,7 @@ const ShoppingCart = () => {
     isUserActive();
   }, []);
   
-  const { cart } = useCart();
+  const { cart, clearCart } = useCart();
   
   const subtotal = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
   const envio = 6000;
@@ -36,6 +36,7 @@ const ShoppingCart = () => {
   
 
   if (!loading && !isActive) {
+    clearCart();
     window.location.href = '/';
   }
   return (
