@@ -6,7 +6,7 @@ import ProductService from "../services/ProductService";
 const Category = () => {
   const [products, setProducts] = useState([]);
   const [filters,] = useState({
-    category: "all",
+    category: "processors",
     minPrice: 0
   });
   useEffect(() => {
