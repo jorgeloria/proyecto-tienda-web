@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 const jwt = require('jsonwebtoken')
 
-class VerifyAuth {
-    verifyToken = (req : any, res: Response, next :any) => {
+
+const verifyToken = (req : any, res: Response, next :any) => {
         req.user = {username:null, verified:false}
         const privateKey = process.env.PRIVATE_KEY
         const bearerHeader = req.headers['authorization']
@@ -16,6 +16,5 @@ class VerifyAuth {
         }
         return res.sendStatus(403)
     }
-}
 
-export default VerifyAuth
+export default verifyToken
