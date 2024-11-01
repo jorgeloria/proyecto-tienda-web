@@ -32,6 +32,6 @@ input:invalid {
   }
   
   input:invalid:required {
-    background-image: linear-gradient(to right, white, red);
+    border: 2px red!;
   }
   

@@ -30,17 +30,18 @@ class LoginForm extends Component{
             const loginInfo = {"email":this.state.username,"password":this.state.password}
             let result = LoginService.doLogin(loginInfo);
             result.then(response=>{
-                console.log(response)
-                if(response.status == 403){
-                  console.log(response.errors);
-                  toast.error("Datos incorrectos", {
-                    position: 'bottom-right',
-                    theme: 'dark'
-                  });
-                } else if(response.status == 200){
+                if(response.status == 200){
                     window.location.href = '/';
                 }
-              }).finally(()=>{
+              }).catch((res)=>{
+                if(res.status == 401){
+                    toast.error("Datos incorrectos", {
+                      position: 'bottom-right',
+                      theme: 'dark'
+                    });
+                  }
+              })
+              .finally(()=>{
                 this.toggleIsLoading();
               });
             return false;
@@ -65,7 +66,7 @@ class LoginForm extends Component{
                         <label htmlFor="username">Nombre de usuario</label>
                     </div>
                     <div className="row" >
-                        <input name="username" required onChange={this.handleUNameChange} className={styles.campo} type="email" ></input>
+                        <input name="username" autoFocus required onChange={this.handleUNameChange} className={styles.campo} type="email" ></input>
                     </div>
                     <div className="row">
                         <label htmlFor="password">Contraseña</label>
@@ -78,7 +79,7 @@ class LoginForm extends Component{
                     </div>
                     <div className="row text-center ">
                         { !this.state.isLoading &&
-                            <Button type="submit" onClick={this.onFinish} >Iniciar Sesión</Button>
+                            <Button type="submit"  >Iniciar Sesión</Button>
                         }
                         { this.state.isLoading &&
                             <img className="loading"/>
