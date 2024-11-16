@@ -1,22 +1,24 @@
 import { JSONHandler } from "../handlers/JSONHandler";
+import { DatabaseHandler } from "../handlers/DatabaseHandler";
 
 export class DataAccess {
-	private jsonHandler: JSONHandler = new JSONHandler();
-	
+	// private jsonHandler: JSONHandler = new JSONHandler();
+	private databaseHandler: DatabaseHandler = new DatabaseHandler();
+
 	public async getProducts() {
-		return this.jsonHandler.readProducts();
+		return this.databaseHandler.readProducts();
 	}
 
 	public async getProductById(id: number) {
-		return this.jsonHandler.readProductById(id);
+		return this.databaseHandler.readProductById(id);
 	}
 
 	public async getUsers() {
-		return this.jsonHandler.readUsers();
+		return this.databaseHandler.readUsers();
 	}
 
 	public async attemptLogin(email: string, password: string) {
-		const users = await this.jsonHandler.readUsers();
+		const users = await this.databaseHandler.readUsers();
 		const user = users.find((user: any) => user.email === email && user.password === password);
 		if (!user) {
 			throw new Error("User not found");
@@ -26,7 +28,7 @@ export class DataAccess {
 	}
 
 	public async registerUser(name: string, email: string, password: string) {
-		const users = await this.jsonHandler.readUsers();
+		const users = await this.databaseHandler.readUsers();
 		const user = users.find((user: any) => user.email === email);
 		if (user) {
 			throw new Error("User already exists");
@@ -41,7 +43,7 @@ export class DataAccess {
 			password,
 		};
 	
-		const success = this.jsonHandler.appendUser(newUser);
+		const success = this.databaseHandler.appendUser(newUser);
 		if (!success) {
 			throw new Error("Failed to register user");
 		}
