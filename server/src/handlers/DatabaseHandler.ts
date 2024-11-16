@@ -24,7 +24,7 @@ export class DatabaseHandler {
 		return products.map((product: any) => {
 			return new Product(
 					product.id,
-					product.nombre,
+					product.title,
 					"product.description",
 					4000,
 					50,
@@ -84,12 +84,10 @@ export class DatabaseHandler {
 
 	public async appendUser(newUser: User) {
 		//TODO: revisar este ejemplo para insertar
-		// if (1==1) {
 		// 	const responseObj = await this.supabase.from('producto')
-		// 			 .insert({ "nombre": "Denmark", "created_at": "2022-11-15 00:00:00+00" })
+		// 			 .insert({ "nombre": "Denmark", "created_at": "234872348273984" })
 		// 	console.log('inserting:')
 		// 	console.log(responseObj)
-		// }
 
 		try {
 			const users = await this.readUsers();
