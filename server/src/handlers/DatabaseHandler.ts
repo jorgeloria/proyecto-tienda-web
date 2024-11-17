@@ -2,6 +2,7 @@ import { createClient } from '@supabase/supabase-js'
 
 import { Product } from "../class/product";
 import { User } from "../class/user";
+import { console } from 'inspector';
 
 export class DatabaseHandler {
 	
@@ -32,6 +33,25 @@ export class DatabaseHandler {
 					"product.images",
 					"product.thumbnail"
 			);
+		});
+	}
+
+	// TODO(todos): cambiar nombres en la base de datos
+	public async readBillsFromUser(userId: number) {
+		const responseObj = await this.supabase
+				.from('factura')
+				.select()
+				.eq('usuario_id', userId);
+
+		if (responseObj.error) {throw responseObj.error;}
+		const bills = responseObj.data;
+		return bills.map((bill: any) => {
+			return {
+				id: bill.id,
+				date: bill.created_at,
+				total: bill.total,
+				userId: bill.usuario_id,
+			};
 		});
 	}
 
