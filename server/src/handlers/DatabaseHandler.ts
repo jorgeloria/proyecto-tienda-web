@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js'
+import dotenv from "dotenv";
 
 import { Product } from "../class/product";
 import { User } from "../class/user";
@@ -8,8 +9,9 @@ export class DatabaseHandler {
 	private supabase : any;
 
 	public constructor(){
-		const privateKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9na3pzZ3NrcnF4ZnhmZnlwcGdsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzE1NDE5ODMsImV4cCI6MjA0NzExNzk4M30.YAUkloy015UK47Vk9bgu5zGmKwiJR0Zlr5O1MkPoi6M";
-		const supaUrl = "https://ogkzsgskrqxfxffyppgl.supabase.co";
+		dotenv.config();
+		const privateKey = process.env.SUPABASE_KEY || "empty";
+		const supaUrl = process.env.SUPABASE_URL || "https://localhost";
 		this.supabase = createClient(supaUrl, privateKey);
 	}
 
@@ -25,32 +27,32 @@ export class DatabaseHandler {
 			return new Product(
 					product.id,
 					product.title,
-					"product.description",
-					4000,
-					50,
-					"product.category",
-					"product.images",
-					"product.thumbnail"
+					product.description,
+					product.price,
+					product.stock,
+					product.category,
+					product.image,
+					product.thumbnail
 			);
 		});
 	}
 
 	public async readProductById(id: number) {
-		// const productsData = await this.jsonFilesHelper.readProductJSONFile();
-		const productsData = {"products":[]};
-		const product = productsData.products.find((product: any) => product.id === id);
-		if (!product) {
+
+		const resObj = await this.supabase.from('producto').select().eq('id', id)
+		if (resObj.error || resObj.data.length == 0) {
 			throw new Error("Product not found");
 		}
+		const product = resObj.data[0];//TODO: cuando se hace select con equal, el resultado es un array
 		return new Product(
-				1,
-				"product.title",
-				"product.description",
-				12,
-				12,
-				"product.category",
-				"product.images",
-				"product.thumbnail"
+				product.id,
+				product.title,
+				product.description,
+				product.price,
+				product.stock,
+				product.category,
+				product.image,
+				product.thumbnail
 		);
 	}
 
