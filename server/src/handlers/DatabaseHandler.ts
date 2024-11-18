@@ -38,7 +38,6 @@ export class DatabaseHandler {
 	}
 
 	public async readProductById(id: number) {
-
 		const resObj = await this.supabase.from('producto').select().eq('id', id)
 		if (resObj.error || resObj.data.length == 0) {
 			throw new Error("Product not found");
@@ -57,9 +56,12 @@ export class DatabaseHandler {
 	}
 
 	public async readUsers() {
-		
-		const usersData = { "users": [] };
-		return usersData.users.map((user: any) => {
+		const resObj = await this.supabase.from('usuario').select()
+		if (resObj.error || resObj.data.length == 0) {
+			throw new Error("Users not found");
+		}
+		const usersData = resObj.data || [];
+		return usersData.map((user: any) => {
 			return new User(
 					user.id,
 					user.name,
@@ -68,19 +70,18 @@ export class DatabaseHandler {
 			);
 		});
 	}
-
+	
 	public async readUserById(id: number) {
-		// const usersData = await this.jsonFilesHelper.readUserJSONFile();
-		const usersData = { "users":[] };
-		const user = usersData.users.find((user: any) => user.id === id);
-		if (!user) {
-			throw new Error("User not found");
+		const resObj = await this.supabase.from('usuario').select().eq('id', id);
+		if (resObj.error || resObj.data.length == 0) {
+			throw new Error("Users not found");
 		}
+		const user = resObj.data[0];
 		return new User(
-				123,
-				"user.name",
-				"user.email",
-				"user.password"
+				user.id,
+				user.name,
+				user.email,
+				user.password
 		);
 	}
 

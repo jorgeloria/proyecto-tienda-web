@@ -17,6 +17,10 @@ export class DataAccess {
 		return this.databaseHandler.readUsers();
 	}
 
+	public async getUserById(id: number) {
+		return this.databaseHandler.readUserById(id);
+	}
+
 	public async attemptLogin(email: string, password: string) {
 		const users = await this.databaseHandler.readUsers();
 		const user = users.find((user: any) => user.email === email && user.password === password);
