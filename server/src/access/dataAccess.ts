@@ -34,10 +34,8 @@ export class DataAccess {
 			throw new Error("User already exists");
 		}
 
-
-		const id = users.length + 1;
 		const newUser = {
-			id,
+			id: 0, // TODO(any): borrar este ID de aquí y de la clase User
 			name,
 			email,
 			password,
