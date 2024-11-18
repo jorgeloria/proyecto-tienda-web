@@ -85,20 +85,10 @@ export class DatabaseHandler {
 	}
 
 	public async appendUser(newUser: User) {
-		//TODO: revisar este ejemplo para insertar
-		// 	const responseObj = await this.supabase.from('producto')
-		// 			 .insert({ "nombre": "Denmark", "created_at": "234872348273984" })
-		// 	console.log('inserting:')
-		// 	console.log(responseObj)
+		console.log('inserting new user:')
+			const responseObj = await this.supabase.from('usuario')
+					 .insert({ "name": newUser.name, "email": newUser.email, "password": newUser.password })
+			console.log(responseObj)
 
-		try {
-			const users = await this.readUsers();
-			users.push(newUser);
-			const data = JSON.stringify({ users }, null, 2);
-			// await this.jsonFilesHelper.writeUserJSONFile(data);
-			return true;
-		} catch (error) {
-			return false;
-		}
 	}
 }
