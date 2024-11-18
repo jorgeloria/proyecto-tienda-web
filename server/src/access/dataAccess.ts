@@ -9,6 +9,26 @@ export class DataAccess {
 		return this.databaseHandler.readProducts();
 	}
 
+	public async getBillsFromUser(userId: number) {
+		return this.databaseHandler.readBillsFromUser(userId);
+	}
+
+	public async getBillById(billId: number) {
+		return this.databaseHandler.readBillById(billId);
+	}
+
+	// TODO(importante): implementar
+	// recibir datos de la factura y los productos
+	public async addBill() {
+		try {
+			// this.databaseHandler.testBill();
+		} catch (error) {
+			const errorMessage = error instanceof Error ? error.message : "An unknown error occurred";
+			// Eliminar este print
+			console.log(errorMessage);
+		}
+	}
+
 	public async getProductById(id: number) {
 		return this.databaseHandler.readProductById(id);
 	}

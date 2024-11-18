@@ -1,8 +1,11 @@
 import { createClient } from '@supabase/supabase-js'
 
+import { Bill } from '../class/bill';
 import { Product } from "../class/product";
+import { ProductPurchase } from "../class/productPurchase";
 import { User } from "../class/user";
 import { console } from 'inspector';
+import { create } from 'domain';
 
 export class DatabaseHandler {
 	
@@ -54,6 +57,94 @@ export class DatabaseHandler {
 			};
 		});
 	}
+
+	public async readBillById(billId: number) {
+		const responseObj = await this.supabase
+		.from('factura')
+		.select(`
+			*,
+			factura_producto(*)
+		`)
+		.eq('id', billId);
+
+		if (responseObj.error) {throw responseObj.error;}
+		const bills = responseObj.data;
+		const bill = bills[0];
+		return JSON.stringify(bill, null, 1);
+	}
+
+	private async createBill(bill: Bill) {
+		const responseObj = await this.supabase
+			.from('factura')
+			.insert(
+				{ usuario_id: bill.userId, total: bill.total }
+			)
+		;
+		if (responseObj.error) {throw responseObj.error;}
+	}
+
+	private async createProductPurchases(bill : Bill) {
+		const productPurchases = bill.products as ProductPurchase[];
+		const errors = [] as ProductPurchase[];
+
+		for (const productPurchase of productPurchases) {
+			const responseObj = await this.supabase
+				.from('factura_producto')
+				.insert({
+					factura_id: productPurchase.billId,
+					producto_id: productPurchase.productId,
+					precio: productPurchase.price,
+					qty: productPurchase.quantity
+					}
+				)
+			;
+			if (responseObj.error) {
+				errors.push(productPurchase);
+			}
+		}
+
+		return errors;
+	}
+
+	private async adjustPurchase(billId : number, productPurchases : ProductPurchase[]){
+		let total = 0;
+		productPurchases.forEach((productPurchase) => {
+			total += productPurchase.price * productPurchase.quantity;
+		});
+
+		const responseObj = await this.supabase
+			.from('factura')
+			.update({ total : total })
+			.eq('id', billId)
+		;
+
+		if (responseObj.error) {throw responseObj.error;}
+	}
+
+	// TODO(importante): cambiar nombre
+	public async testBill(newBill: Bill) {
+		try {
+			await this.createBill(newBill);
+		} catch (error) {
+			// Cuando no se pueda insertar la factura
+			throw new Error("Failed to insert bill");
+		}
+
+		const uninsertedProducts = await this.createProductPurchases(newBill) as ProductPurchase[];		
+		if (uninsertedProducts.length > 0) {
+			try {
+				await this.adjustPurchase(newBill.id, uninsertedProducts);
+			} catch (error) {// TODO(Fray): manejar error
+				// Cuando se realice la compra parcialmente, 
+				// pero no se pueda ajustar el monto total de la factura
+			}
+
+			// Siempre que se realice la compra parcialmente
+			throw new Error("Failed to insert some product purchases");
+		}
+	}
+
+
 
 	public async readProductById(id: number) {
 		// const productsData = await this.jsonFilesHelper.readProductJSONFile();
