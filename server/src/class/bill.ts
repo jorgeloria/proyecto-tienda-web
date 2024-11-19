@@ -7,7 +7,7 @@ export class Bill {
     userId: number;
     products: ProductPurchase[];
 
-    constructor(
+    constructor (
         id: number,
         date: Date,
         total: number,

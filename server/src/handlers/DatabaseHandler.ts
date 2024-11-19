@@ -51,12 +51,13 @@ export class DatabaseHandler {
 		if (responseObj.error) {throw responseObj.error;}
 		const bills = responseObj.data;
 		return bills.map((bill: any) => {
-			return {
-				id: bill.id,
-				date: bill.created_at,
-				total: bill.total,
-				userId: bill.usuario_id,
-			};
+			return new Bill (
+				bill.id,
+				bill.created_at,
+				bill.total,
+				bill.usuario_id,
+				[]
+			);
 		});
 	}
 
@@ -72,7 +73,13 @@ export class DatabaseHandler {
 		if (responseObj.error) {throw responseObj.error;}
 		const bills = responseObj.data;
 		const bill = bills[0];
-		return JSON.stringify(bill, null, 1);
+		return new Bill (
+			bill.id,
+			bill.created_at,
+			bill.total,
+			bill.usuario_id,
+			bill.factura_producto
+		);
 	}
 
 	private async createBill(bill: Bill) {
@@ -81,21 +88,34 @@ export class DatabaseHandler {
 			.insert(
 				{ usuario_id: bill.userId, total: bill.total }
 			)
+			.select()
 		;
+
 		if (responseObj.error) {throw responseObj.error;}
+		return responseObj.data[0].id;
+	}
+
+	private async readMultipleProducts(productPurchases: ProductPurchase[]) {
+		// TODO(opcional): verificar que los productos se lean correctamente
+		for (let i = 0; i < productPurchases.length; i++) {
+			const product = await this.readProductById(productPurchases[i].productId);
+			productPurchases[i].price = product.price;
+		}
+		return productPurchases;
 	}
 
 	private async createProductPurchases(bill : Bill) {
-		const productPurchases = bill.products as ProductPurchase[];
+		const productPurchases = bill.products;
 		const errors = [] as ProductPurchase[];
+
 
 		for (const productPurchase of productPurchases) {
 			const responseObj = await this.supabase
 				.from('factura_producto')
 				.insert({
-					factura_id: productPurchase.billId,
+					factura_id: bill.id,
 					producto_id: productPurchase.productId,
-					precio: productPurchase.price,
+					price: productPurchase.price,
 					qty: productPurchase.quantity
 					}
 				)
@@ -124,9 +144,15 @@ export class DatabaseHandler {
 	}
 
 	// TODO(importante): cambiar nombre
-	public async testBill(newBill: Bill) {
+	public async registerPurchase(newBill: Bill) {
 		try {
-			await this.createBill(newBill);
+			const productPurchases = await this.readMultipleProducts(newBill.products);
+			newBill.products = productPurchases;
+			for (let i = 0; i < productPurchases.length; i++) {
+				newBill.total += productPurchases[i].price * productPurchases[i].quantity;
+			}
+			const billId = await this.createBill(newBill);
+			newBill.id = billId;
 		} catch (error) {
 			// Cuando no se pueda insertar la factura
 			throw new Error("Failed to insert bill");
@@ -144,6 +170,8 @@ export class DatabaseHandler {
 			// Siempre que se realice la compra parcialmente
 			throw new Error("Failed to insert some product purchases");
 		}
+
+		return newBill.id;
 	}
 
 

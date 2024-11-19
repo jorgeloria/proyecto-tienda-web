@@ -6,9 +6,9 @@ export class ProductPurchase {
 
     constructor(
         productId: number,
-        billId: number,
-        price: number,
-        quantity: number
+        billId: number = 0,
+        price: number = 0,
+        quantity: number = 0
     ) {
         this.productId = productId;
         this.billId = billId;
