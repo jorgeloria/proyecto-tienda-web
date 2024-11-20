@@ -81,5 +81,4 @@ export class UserController {
     });
     return token;
   }
-
 }
