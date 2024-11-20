@@ -41,6 +41,12 @@
       "name": "zxc asd qwe",
       "email": "zxc@qwe.asd",
       "password": "asdqwe"
+    },
+    {
+      "id": 8,
+      "name": "qwe@qwe.qwe",
+      "email": "qwe@qwe.qwe",
+      "password": "qwe123"
     }
   ]
 }
