@@ -59,13 +59,18 @@ export class DatabaseHandler {
 	}
 
 	public async readBillById(billId: number) {
-		const responseObj = await this.supabase
-		.from('factura')
-		.select(`
-			*,
-			factura_producto(*)
-		`)
-		.eq('id', billId);
+		let responseObj;
+		try{
+			responseObj = await this.supabase
+			.from('factura')
+			.select(`
+				*,
+				factura_producto(price,qty,producto(id,image,title,thumbnail))
+			`)
+			.eq('id', billId);
+		}catch(e){
+			console.log(e)
+		}
 
 		if (responseObj.error) {throw responseObj.error;}
 		const bills = responseObj.data;
