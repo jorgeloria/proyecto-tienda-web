@@ -5,8 +5,6 @@ import { Bill } from '../class/bill';
 import { Product } from "../class/product";
 import { ProductPurchase } from "../class/productPurchase";
 import { User } from "../class/user";
-import { console } from 'inspector';
-import { create } from 'domain';
 
 export class DatabaseHandler {
 	
@@ -47,7 +45,6 @@ export class DatabaseHandler {
 				.from('factura')
 				.select()
 				.eq('usuario_id', userId);
-
 		if (responseObj.error) {throw responseObj.error;}
 		const bills = responseObj.data;
 		return bills.map((bill: any) => {
