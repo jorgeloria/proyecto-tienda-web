@@ -2,6 +2,7 @@ import { JSONHandler } from "../handlers/JSONHandler";
 import { DatabaseHandler } from "../handlers/DatabaseHandler";
 import { Bill } from "../class/bill";
 import { ProductPurchase } from "../class/productPurchase";
+import { ShipData } from "../class/shipData";
 
 export class DataAccess {
 	// private jsonHandler: JSONHandler = new JSONHandler();
@@ -20,7 +21,7 @@ export class DataAccess {
 	}
 
 	// recibir datos de la factura y los productos
-	public async addBill(userId: number, products: any[]) {
+	public async addBill(userId: number, products: any[], shipData: ShipData) {
 		/*
 		Datos de prueba para la factura
 		Los datos tienen que enviarse en el siguiente formato desde el frontend:
@@ -29,7 +30,17 @@ export class DataAccess {
 		objs.push(p);
 		p = {id: 10, quantity: 2};
 		objs.push(p);		
-		this.addBill(1, objs);
+		const shipData = new ShipData(
+			"moisesariasg@gmail.com",
+			"moises",
+			"arias grillo",
+			"shi",
+			"San Jose",
+			"Aserri",
+			"San Gabriel",
+			12344321
+		);	
+		this.addBill(1, objs, shipData);
 		*/
 		const prods = products.map((product) => {
 			return new ProductPurchase( 
@@ -46,7 +57,7 @@ export class DataAccess {
 		)
 
 		try {
-			const retVal = await this.databaseHandler.registerPurchase(bill);
+			const retVal = await this.databaseHandler.registerPurchase(bill,shipData);
 			return retVal;
 		} catch (error) {
 			const errorMessage = error instanceof Error ? error.message : "An unknown error occurred";

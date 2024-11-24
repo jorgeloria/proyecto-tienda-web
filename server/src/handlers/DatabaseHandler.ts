@@ -5,6 +5,7 @@ import { Bill } from '../class/bill';
 import { Product } from "../class/product";
 import { ProductPurchase } from "../class/productPurchase";
 import { User } from "../class/user";
+import { ShipData } from '../class/shipData';
 
 export class DatabaseHandler {
 	
@@ -84,15 +85,19 @@ export class DatabaseHandler {
 		);
 	}
 
-	private async createBill(bill: Bill) {
+	private async createBill(bill: Bill, shipData:ShipData ) {
 		const responseObj = await this.supabase
 			.from('factura')
 			.insert(
-				{ usuario_id: bill.userId, total: bill.total }
+				{ 
+					usuario_id: bill.userId, total: bill.total, correo: shipData.email,
+					nombre_usuario:shipData.name, apellido_usuario:shipData.lastName,
+					direccion:shipData.direction, provincia:shipData.province,
+					ciudad:shipData.city, region:shipData.region, telefono:shipData.phone
+				}
 			)
 			.select()
 		;
-
 		if (responseObj.error) {throw responseObj.error;}
 		return responseObj.data[0].id;
 	}
@@ -146,14 +151,14 @@ export class DatabaseHandler {
 	}
 
 	// TODO(importante): cambiar nombre
-	public async registerPurchase(newBill: Bill) {
+	public async registerPurchase(newBill: Bill, shipData: ShipData) {
 		try {
 			const productPurchases = await this.readMultipleProducts(newBill.products);
 			newBill.products = productPurchases;
 			for (let i = 0; i < productPurchases.length; i++) {
 				newBill.total += productPurchases[i].price * productPurchases[i].quantity;
 			}
-			const billId = await this.createBill(newBill);
+			const billId = await this.createBill(newBill, shipData);
 			newBill.id = billId;
 		} catch (error) {
 			// Cuando no se pueda insertar la factura
