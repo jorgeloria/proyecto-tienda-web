@@ -20,6 +20,12 @@ siguientes comandos:
 
 - `npm install`
 
+Estos pasos inicializarán el servidor del sitio web.
+
+Para inicializar el servidor back-end, deberá navegar
+a la carpeta ".\server\" en una terminal distinta y
+volver a seguir los pasos antes mencionados.
+
 ## Manual de usuario
 
 [Consulta la guía completa aquí](./Documentation/GuiaUso.md)
