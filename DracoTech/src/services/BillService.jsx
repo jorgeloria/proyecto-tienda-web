@@ -7,11 +7,8 @@ const BillService = {
                 "http://localhost:3001/bill/getBills", {params: {userId: userId}}
             );
 
-            if (!response.ok) {
-                throw new Error("Error al obtener facturas");
-            }
-
-            const bills = await response.json();
+            const bills = await response.data;
+            console.log("[BILL SERVICE] bills: ", bills);
             return bills;
 
         } catch (error) {

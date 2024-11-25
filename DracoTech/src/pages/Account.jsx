@@ -39,10 +39,16 @@ useEffect(() => {
            >Registrarse</Button>
         </>
         ) : (
-        <Button
+        <>
+          <Button
           classNameValue="font-medium text-2xl w-full sm:w-auto"
           onClick={() => (window.location.href = "/EditAccount")}>
           Editar Información de la cuenta</Button>
+          <Button
+          classNameValue="font-medium text-2xl w-full sm:w-auto"
+          onClick={() => (window.location.href = "/PurchaseHistory")}>
+          Historial de compras</Button>
+        </>
         )}
 
 

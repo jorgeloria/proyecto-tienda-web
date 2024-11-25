@@ -1,9 +1,29 @@
-import React from "react"
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 import styles from "./PurchaseHistoryComponent.module.css"
-
+import BillService from "../../services/BillService";
 
 const PurchaseHistoryComponent = () => {
+    const [bills, setBills] = useState({});
+
+    useEffect(() => {
+        const fetchBills = async () => {
+            try {
+                // TODO(importate): usar id del usuario activo
+                const data = await BillService.getBills(1);
+                setBills(data);
+            } catch (err) {
+                console.error(err);
+                //setError("Error al cargar las facturas");
+            }
+        };
+
+        fetchBills();
+    }, []);
+
+    const fallbackData = "failed to fetch product data";
+    console.log(bills);
 
     const compras = [
         {
@@ -53,13 +73,13 @@ const PurchaseHistoryComponent = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {compras.map((compra,i) => {
-                            return (<tr>
-                                        <td>{compra.factura_id}</td>
-                                        <td>{compra.productos_desc}</td>
-                                        <td>{compra.monto}</td>
-                                        <td>{compra.cantidad}</td>
-                                        <td>{compra.impuesto}</td>
+                        {bills.map((compra) => {
+                            return (<tr key={compra.id}>
+                                        <td>{compra.id}</td>
+                                        <td>{compra.date}</td>
+                                        <td>{compra.total}</td>
+                                        <td>{compra.userId}</td>
+                                        <td>{compra.id}</td>
                                     </tr>)
                         })}
                     </tbody>
