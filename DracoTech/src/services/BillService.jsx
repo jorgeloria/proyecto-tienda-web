@@ -23,11 +23,7 @@ const BillService = {
                 "http://localhost:3001/bill/getBillById", {params: {billId: billId}}
             );
 
-            if (!response.ok) {
-                throw new Error("Error al obtener factura");
-            }
-
-            const bill = await response.json();
+            const bill = await response.data;
             return bill;
 
         } catch (error) {

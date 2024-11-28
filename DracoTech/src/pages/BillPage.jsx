@@ -1,15 +1,32 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import BillService from "../services/BillService";
 
 import React from "react";
 
 const BillPage = () => {
-  const [gottenBill, setProduct] = useState({});
+  const [BillData, setBills] = useState({});
   const location = useLocation();
-  const bill = location.state || {};
+  const billId = location.state || {};
 
-  useEffect(() => {});
+  useEffect(() => {
+    console.log(billId.id);
+    const fetchBillId = async () => {
+      try {
+        // TODO: usar id del usuario activo
+        const data = await BillService.getBillById(billId.id);
+        setBills(data);
+        console.log(BillData);
+      } catch (err) {
+        console.error(err);
+      }
+    };
 
+    fetchBillId();
+  }, []);
+
+  const fallbackData = "failed to fetch product data";
+  console.log(BillData);
   return (
     <div className="p-5">
       <div className="flex justify-center pt-10 pb-10">
@@ -18,51 +35,55 @@ const BillPage = () => {
       <div className="flex flex-col md:flex-row justify-around bg-Card_color p-5 rounded-lg shadow-lg">
         <div>
           <p>
-            <strong>Correo:</strong> cliente@ejemplo.com
+            <strong>Correo:</strong> {BillData?.shipData?.email || fallbackData}
           </p>
           <p>
-            <strong>Nombre:</strong> John Doe
+            <strong>Nombre:</strong> {BillData?.shipData?.name || fallbackData}{" "}
+            {BillData?.shipData?.lastName || fallbackData}
           </p>
           <p>
-            <strong>Dirección:</strong> Calle 123, Ciudad Y, Provincia X, Región Z
+            <strong>Dirección:</strong>
+            {BillData?.shipData?.direction || fallbackData},
+            {BillData?.shipData?.city || fallbackData},
+            {BillData?.shipData?.province || fallbackData},
+            {BillData?.shipData?.region || fallbackData}
           </p>
           <p>
-            <strong>Teléfono:</strong> 123456789
+            <strong>Teléfono:</strong>{" "}
+            {BillData?.shipData?.phone || fallbackData}
           </p>
         </div>
         <div>
           <p>
-            <strong>Fecha:</strong> 27/11/2024
+            <strong>Fecha:</strong> {BillData?.date || fallbackData}
           </p>
           <p>
-            <strong>Total:</strong> $250.75
+            <strong>Total:</strong> {BillData?.total || fallbackData}
           </p>
         </div>
       </div>
       <div className="mt-10 bg-Card_color p-6 shadow-lg rounded-lg">
         <h2 className="text-2xl mb-4">Productos</h2>
-        <table className="table-auto w-full bg-Footer_color rounded-lg">
+        <table className="table-auto w-full bg-Footer_color rounded-lg ">
           <thead className="">
             <tr>
-              <th className="p-2 text-left">[Producto]</th>
-              <th className="p-2 text-left">Precio</th>
-              <th className="p-2 text-left">Cantidad</th>
-              <th className="p-2 text-left">Subtotal</th>
+							<th className="p-6 text-left">Imagen</th>
+              <th className="p-6 text-left">Producto</th>
+              <th className="p-6 text-left">Precio</th>
+              <th className="p-6 text-left">Cantidad</th>
+              <th className="p-6 text-left">Subtotal</th>
             </tr>
           </thead>
           <tbody>
-            <tr className="border-b">
-              <td className="p-2">Producto A</td>
-              <td className="p-2">$50.25</td>
-              <td className="p-2">2</td>
-              <td className="p-2">$100.50</td>
-            </tr>
-            <tr className="border-b">
-              <td className="p-2">Producto B</td>
-              <td className="p-2">$75.00</td>
-              <td className="p-2">1</td>
-              <td className="p-2">$75.00</td>
-            </tr>
+            {BillData?.products?.map((compra) => (
+              <tr className="" key={compra?.producto?.id}>
+								<td className="p-6"><img className="rounded" alt={compra?.producto?.title} src={compra?.producto?.image}></img></td>
+                <td className="p-6">{compra?.producto?.title}</td>
+                <td className="p-6">{compra?.price}</td>
+                <td className="p-6">{compra?.qty}</td>
+                <td className="p-6">{compra?.qty * compra?.price}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
