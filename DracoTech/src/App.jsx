@@ -12,6 +12,7 @@ import Product from "./pages/Product";
 import SignUp from "./pages/SignUp";
 import PurchaseHistory from './pages/PurchaseHistory';
 import CheckoutPage  from './pages/CheckoutPage';
+import BillPage from "./pages/BillPage";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/PurchaseHistory" element={<PurchaseHistory />} />
         <Route path="/CheckoutPage" element={<CheckoutPage />} />
+        <Route path="/BillPage" element={<BillPage />} />
       </Route>
     </Routes>
   );

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { jwtDecode } from "jwt-decode";
 import { useCart } from "../hooks/useCart";
 
 const LoginService = {
@@ -9,7 +10,9 @@ const LoginService = {
 			
 			console.log(response.data);
 			if (response.data.token) {
-				localStorage.setItem("authToken", response.data.token);
+				const token = response.data.token;
+				localStorage.setItem("authToken", token);
+				localStorage.setItem("uid", jwtDecode(token).id)
 			}
 			
 			return response;
