@@ -6,6 +6,8 @@ import CategoryItem from "./Navbar/CategoryItem";
 import SidebarCategoryItem from "./Navbar/SidebarCategoryItem";
 import SubCategoryItem from "./Navbar/SubCategoryItem";
 import LoginService from "../services/LoginService";
+import LogoutService from "../services/LogoutService"
+import { useNavigate } from "react-router-dom";
 
 
 const Navbar = () => {
@@ -13,7 +15,7 @@ const Navbar = () => {
  
 
   const [isActive, setIsActive] = useState(false);
-
+  const navigate = useNavigate();
 useEffect(() => {
   const isUserActive = async () => {
     try {
@@ -30,7 +32,15 @@ useEffect(() => {
 
 
 
-
+const handleLogout = async () => {
+  const response = await LogoutService.doLogout();
+  console.log(JSON.stringify(response, null, 2))
+  if (response.status === 200) {
+    window.location.reload();
+  } else {
+    console.error("Logout unsuccessfull")
+  }
+}
 
   return (
     <div className="drawer">
@@ -235,19 +245,46 @@ useEffect(() => {
             {isActive ? (
               <Link to="/ShoppingCart">
                 <div className="w-9 mx-4 btn-sm btn-ghost btn-square">
-                  <img
-                    src="/src/images/shopping-cart.png"
-                    alt="shopping cart icon"
-                    />
+                <img
+                  src="/src/images/shopping-cart.png"
+                  alt="shopping cart icon"
+                />
                 </div>
               </Link>
             ) : (<></>)} 
 
-            <div className="w-9 ml-4 btn-sm btn-ghost btn-circle">
-              {/* // TODO(Any): Revisar esto. Copié esto de arriba porque la navbar no tenía un link en este ícono. */}
-              <Link to="/Account" className="m-0 p-0">
-                <img src="/src/images/user.png" alt="profile icon" />
-              </Link>
+            <div className="dropdown dropdown-end">
+              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                <div className="w-10 rounded-full">
+                  <img src="/src/images/user.png" alt="Profile Icon" />
+                </div>
+              </label>
+              <ul
+                tabIndex={0}
+                className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 z-[2]"
+              >
+                {
+                  isActive? (
+                    <>
+                      <li>
+                        <Link to={"/EditAccount"}>Perfil</Link>
+                      </li>
+                      <li>
+                        <Link to={""} onClick={handleLogout}>Cerrar Sesión</Link>
+                      </li>
+                    </>
+                  ) : (
+                    <>
+                      <li>
+                        <Link to={"/Login"}>Iniciar Sesión</Link>
+                      </li>
+                      <li>
+                        <Link to={"/SignUp"}>Registrarse</Link>
+                      </li>
+                    </>
+                  )
+                }
+              </ul>
             </div>
           </div>
         </div>
