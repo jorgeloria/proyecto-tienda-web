@@ -21,8 +21,8 @@ const navigate = useNavigate();
     useEffect(() => {
         const fetchBills = async () => {
             try {
-                // TODO: usar id del usuario activo
-                const data = await BillService.getBills(1);
+                const user_id = localStorage.getItem("uid")
+                const data = await BillService.getBills(user_id);
                 setBills(data);
             } catch (err) {
                 console.error(err);
