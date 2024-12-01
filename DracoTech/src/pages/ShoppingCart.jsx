@@ -82,7 +82,7 @@ const ShoppingCart = () => {
             </tbody>
           </table>
           <Link to="/CheckoutPage">
-            <Button classNameValue="w-full h-16 text-xl">Pagar</Button>
+            <Button classNameValue="w-full h-16 text-xl">Ir al Checkout</Button>
           </Link>
         </div>
       </div>
