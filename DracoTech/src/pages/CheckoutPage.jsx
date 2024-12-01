@@ -142,7 +142,7 @@ const CheckoutPage = () => {
         if(response == "SUCCESS"){
           document.getElementById('FinCompra').showModal();
         }else{
-          //TODO: modal de error
+          document.getElementById('Error').showModal();
         }
       }
     } else {
@@ -154,27 +154,7 @@ const CheckoutPage = () => {
   return (
     <div className="min-h-screen bg-BG_color text-white flex justify-center items-center">
       <div className="w-full max-w-5xl p-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <div className="space-y-6">
-          <div className="bg-Card_color p-6 rounded-lg">
-            <h1 className="text-2xl font-semibold mb-4">Dirección de Entrega</h1>
-            <ShippingInformation
-              shippingData={shippingData}
-              setShippingData={setShippingData}
-              shippingErrors={shippingDataErrors}
-            />
-          </div>
-          
-          <div className="bg-Card_color p-6 rounded-lg">
-            <h1 className="text-2xl font-semibold mb-4">Tarjeta</h1>
-            <CardInformation
-              cardData={cardData}
-              setCardData={setCardData}
-              cardDataErrors={cardDataErrors}
-            />
-          </div>
-        </div>
-        
-        <div className="bg-Card_color p-6 rounded-lg space-y-6">
+      <div className="bg-Card_color p-6 rounded-lg space-y-6">
           <h1 className="text-2xl font-semibold mb-4 text-center">Tu Pedido</h1>
           <div className="space-y-4">
             {cart.map((item) => (
@@ -194,7 +174,26 @@ const CheckoutPage = () => {
               <SummaryItem name={"Total"} value={total} />
             </tbody>
           </table>
-          { !isLoading &&
+          
+        </div>
+        <div className="space-y-6">
+          <div className="bg-Card_color p-6 rounded-lg">
+            <h1 className="text-2xl font-semibold mb-4">Dirección de Entrega</h1>
+            <ShippingInformation
+              shippingData={shippingData}
+              setShippingData={setShippingData}
+              shippingErrors={shippingDataErrors}
+            />
+          </div>
+          
+          <div className="bg-Card_color p-6 rounded-lg">
+            <h1 className="text-2xl font-semibold mb-4">Tarjeta</h1>
+            <CardInformation
+              cardData={cardData}
+              setCardData={setCardData}
+              cardDataErrors={cardDataErrors}
+            />
+            { !isLoading &&
               <button className="btn bg-Tertiary_color hover:bg-Tertiary_color text-white w-full border-none "
                 onClick={handleCheckoutPageClick}>
                 Pagar
@@ -205,18 +204,32 @@ const CheckoutPage = () => {
           }
 
           <dialog id="FinCompra" className="modal">
-            <div className="modal-box">
+            <div className="modal-box bg-Card_color">
               <h1 className="font-bold text-lg">Compra finalizada</h1>
               <p className="py-4">La compra se completo con exito</p>
               <div className="modal-action">
                 <form method="dialog">
                 <Link to="/">
-                <button className="btn" onClick={() => clearCart()}>Continuar</button>
+                <button className="btn bg-Tertiary_color hover:bg-Tertiary_color text-white w-full border-none" onClick={() => clearCart()}>Continuar</button>
                 </Link>
                 </form>
               </div>
             </div>
           </dialog>
+          <dialog id="Error" className="modal">
+            <div className="modal-box bg-Card_color">
+              <h1 className="font-bold text-lg">Error al realizar la compra</h1>
+              <p className="py-4">No se puedo realizar la compra</p>
+              <div className="modal-action">
+                <form method="dialog">
+                <Link to="/">
+                <button className="btn bg-Tertiary_color hover:bg-Tertiary_color text-white w-full border-none" onClick={() => clearCart()}>Continuar</button>
+                </Link>
+                </form>
+              </div>
+            </div>
+          </dialog>
+          </div>
         </div>
       </div>
     </div>

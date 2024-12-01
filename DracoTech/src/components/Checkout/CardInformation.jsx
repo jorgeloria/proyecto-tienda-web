@@ -26,7 +26,7 @@ export default function CardInformation({cardData, setCardData, cardDataErrors})
 
   return (
     <>
-			<form className="grid grid-cols-1 md:grid-cols-2 gap-4">
+			<form className="grid grid-cols-1 md:grid-cols-2 gap-4 pb-4">
 				<CheckoutField
 					id={"cardNumber"}
 					title={"Número de Tarjeta"}
