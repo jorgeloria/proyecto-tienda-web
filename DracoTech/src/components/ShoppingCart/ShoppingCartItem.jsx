@@ -17,7 +17,7 @@ const ShoppingCartItem = ({ id, imageMin, name, price, quantity, subtotal}) => {
           <img className="rounded-md" src={`${imageMin}`} alt={name} />
         </td>
         <td>{name}</td>
-        <td>₡ {price.toLocaleString("es-CR")}</td>
+        <td>{price.toLocaleString("es-CR", {style: 'currency', currency: 'CRC',})}</td>
         <td className="lg:w-28">
           <div className="quantity-box h-12 w-20 grid grid-cols-4 border-2 border-Footer_color rounded">
             <button className="quantity-box quantity-box-left col-span-1 content-center text-center text-lg border-r-2 border-Footer_color"
@@ -33,7 +33,7 @@ const ShoppingCartItem = ({ id, imageMin, name, price, quantity, subtotal}) => {
             </button>
           </div>
         </td>
-        <td>₡ {subtotal.toLocaleString("es-CR")}</td>
+        <td>{subtotal.toLocaleString("es-CR", {style: 'currency', currency: 'CRC',})}</td>
         <td className="lg:w-14">
           <button onClick={() => removeFromCart(product)}>
             <img src="/src/images/trash.png" alt="" className="w-6" />

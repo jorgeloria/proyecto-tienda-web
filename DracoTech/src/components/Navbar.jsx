@@ -8,10 +8,11 @@ import SubCategoryItem from "./Navbar/SubCategoryItem";
 import LoginService from "../services/LoginService";
 import LogoutService from "../services/LogoutService"
 import { useNavigate } from "react-router-dom";
+import { useCart } from "../hooks/useCart";
 
 
 const Navbar = () => {
-
+  const { cart, clearCart } = useCart();
  
 
   const [isActive, setIsActive] = useState(false);
@@ -40,6 +41,7 @@ const handleLogout = async () => {
   } else {
     console.error("Logout unsuccessfull")
   }
+  clearCart()
 }
 
   return (
@@ -261,13 +263,13 @@ const handleLogout = async () => {
               </label>
               <ul
                 tabIndex={0}
-                className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 z-[2]"
+                className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-Footer_color rounded-box w-52 z-[2]"
               >
                 {
                   isActive? (
                     <>
                       <li>
-                        <Link to={"/EditAccount"}>Perfil</Link>
+                        <Link to={"/Account"}>Perfil</Link>
                       </li>
                       <li>
                         <Link to={""} onClick={handleLogout}>Cerrar Sesión</Link>

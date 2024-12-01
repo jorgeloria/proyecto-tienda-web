@@ -57,8 +57,14 @@ const navigate = useNavigate();
                             {bills.map((compra) => (
                                 <tr key={compra.id}>
                                     <td>{compra.id}</td>
-                                    <td>{compra.date}</td>
-                                    <td>{compra.total}</td>
+                                    <td>{new Date(compra.date).toLocaleDateString('es-CR', { 
+                                        day: '2-digit', 
+                                        month: '2-digit', 
+                                        year: 'numeric' 
+                                    })}</td>
+                                    <td>{compra.total.toLocaleString('es-CR', {
+                                        style: 'currency',
+                                        currency: 'CRC',})}</td>
                                     <td>
                                         <button onClick={() => handleClick(compra.id)}> 
                                             <box-icon name='detail' type='solid' color='#ffffff' ></box-icon>
