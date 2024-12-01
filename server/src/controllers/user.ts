@@ -49,8 +49,7 @@ export class UserController {
         });
       }
       const user = await this.dataAccess.attemptLogin(email, password);
-      let token = await this.saveSession(req, email);
-      console.log(token);
+      let token = await this.saveSession(req, email, user.id);
       return res.status(200).json({ "token": token, "username": email });
     } catch (error: any) {
       const errorMessage = error instanceof Error ? error.message : "An unknown error occurred";
@@ -74,10 +73,10 @@ export class UserController {
     return res.sendStatus(200);
   }
 
-  private async saveSession(req: Request, username: string) {
+  private async saveSession(req: Request, username: string, id: string) {
     let privateKey = process.env.PRIVATE_KEY || "some-private-key";
-    let token = await jwt.sign({ username: username }, privateKey, {
-      expiresIn: '30m'
+    let token = await jwt.sign({ username: username, id: id }, privateKey, {
+      expiresIn: '10m'
     });
     return token;
   }

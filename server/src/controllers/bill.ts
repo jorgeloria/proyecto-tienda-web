@@ -22,7 +22,6 @@ export class BillController {
         const id = Number(req.query.billId);
         try {
 			const bills = await this.dataAccess.getBillById(id);
-            console.log(bills)
 			return res.status(200).json(bills);
 		} catch (error) {
 			return res.status(500).json({
