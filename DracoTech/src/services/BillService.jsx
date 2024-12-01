@@ -32,6 +32,16 @@ const BillService = {
         }
     },
 
+    processTransaction: async function (transaction) {
+        console.log("Sending transaction " + JSON.stringify(transaction, null, 2))
+        const response = await axios.post("http://localhost:8484/transaction", {
+            transaction
+        })
+
+        console.log("Response from backend: " + JSON.stringify(response, null, 2))
+        return response;
+    },
+
     processPurchase: async function (value) {
         try {
             const response = await axios.post(

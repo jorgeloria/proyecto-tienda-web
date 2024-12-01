@@ -12,6 +12,7 @@ import {
   verifyExpiryDate
 } from '../components/Checkout/CheckoutValidations';
 
+import BillService from '../services/BillService';
 import { useCart } from "../hooks/useCart";
 
 import { Link } from 'react-router-dom';
@@ -109,9 +110,15 @@ const CheckoutPage = () => {
 
   }
 
-  const handleCheckoutPageClick = () => {
+  const handleCheckoutPageClick = async () => {
     if (verifyInputs()) {
       console.log("Data is valid")
+      await BillService.processTransaction({
+        card: cardData.cardNumber.replaceAll(" ", ""),
+        expirationDate: cardData.expiryDate.replaceAll(" ", ""),
+        cvc: cardData.cvc,
+        currency: "colones"
+      })
     } else {
       console.log("Data is invalid")
     }
