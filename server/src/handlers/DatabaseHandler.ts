@@ -118,7 +118,7 @@ export class DatabaseHandler {
 			)
 			.select()
 		;
-		if (responseObj.error) {throw responseObj.error;}
+		if (responseObj.error) { console.log(responseObj.error); throw responseObj.error;}
 		return responseObj.data[0].id;
 	}
 

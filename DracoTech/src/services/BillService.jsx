@@ -33,13 +33,16 @@ const BillService = {
     },
 
     processTransaction: async function (transaction) {
-        console.log("Sending transaction " + JSON.stringify(transaction, null, 2))
-        const response = await axios.post("http://localhost:8484/transaction", {
-            transaction
-        })
-
-        console.log("Response from backend: " + JSON.stringify(response, null, 2))
-        return response;
+        try{
+            console.log("Sending transaction " + JSON.stringify(transaction, null, 2))
+            const response = await axios.post("http://localhost:8484/transaction", {
+                transaction
+            })
+            console.log("Response from backend: " + JSON.stringify(response, null, 2))
+            return response
+        }catch(e){
+            console.log("Error:", JSON.stringify(error.response.data.message,null,2))
+        }
     },
 
     processPurchase: async function (value) {
@@ -47,12 +50,9 @@ const BillService = {
             const response = await axios.post(
                 "http://localhost:3001/bill/processPurchase", value
             );
-
-            if (!response.ok) {
+            if (response.status != 200) {
                 throw new Error("Error al procesar compra");
             }
-            
-            console.log("Succeded")
             return "SUCCESS"
         } catch(error) {
             return error;

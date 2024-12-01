@@ -20,6 +20,8 @@ import { Link } from 'react-router-dom';
 
 const CheckoutPage = () => {
   const { cart, clearCart } = useCart();
+  
+  const [ isLoading, setIsLoading ] = useState(false)
 
   const [shippingData, setShippingData] = useState({
     email: "",
@@ -111,17 +113,42 @@ const CheckoutPage = () => {
   }
 
   const handleCheckoutPageClick = async () => {
+    setIsLoading(true);
     if (verifyInputs()) {
       console.log("Data is valid")
-      await BillService.processTransaction({
+      const response = await BillService.processTransaction({
         card: cardData.cardNumber.replaceAll(" ", ""),
         expirationDate: cardData.expiryDate.replaceAll(" ", ""),
         cvc: cardData.cvc,
         currency: "colones"
       })
+      if(response.status == 200){
+        let products = [];
+        cart.map( p => {
+          products.push({id: p.id, quantity: p.quantity})
+        })
+        const shippingDataObject = {
+          email: shippingData.email,
+          name: shippingData.name,
+          lastName: shippingData.lastName,
+          direction: shippingData.address,
+          province: shippingData.province,
+          city: shippingData.city,
+          region: shippingData.region,
+          phone: shippingData.phone.replaceAll("-","").replaceAll(" ",""),
+        }
+        const reqObj = { userId: localStorage.getItem("uid"), products: products ,shipData: shippingDataObject };
+        const response = await BillService.processPurchase(reqObj)
+        if(response == "SUCCESS"){
+          document.getElementById('FinCompra').showModal();
+        }else{
+          //TODO: modal de error
+        }
+      }
     } else {
       console.log("Data is invalid")
     }
+    setIsLoading(false);
   };
 
   return (
@@ -167,10 +194,16 @@ const CheckoutPage = () => {
               <SummaryItem name={"Total"} value={total} />
             </tbody>
           </table>
-          <button className="btn bg-Tertiary_color hover:bg-Tertiary_color text-white w-full border-none "
-          onClick={handleCheckoutPageClick}>
-            Pagar
-          </button>
+          { !isLoading &&
+              <button className="btn bg-Tertiary_color hover:bg-Tertiary_color text-white w-full border-none "
+                onClick={handleCheckoutPageClick}>
+                Pagar
+              </button>
+          }
+          { isLoading &&
+              <img className="loading"/>
+          }
+
           <dialog id="FinCompra" className="modal">
             <div className="modal-box">
               <h1 className="font-bold text-lg">Compra finalizada</h1>
