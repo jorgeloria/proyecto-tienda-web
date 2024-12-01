@@ -77,7 +77,7 @@ export class UserController {
   private async saveSession(req: Request, username: string) {
     let privateKey = process.env.PRIVATE_KEY || "some-private-key";
     let token = await jwt.sign({ username: username }, privateKey, {
-      expiresIn: '1m'
+      expiresIn: '30m'
     });
     return token;
   }
