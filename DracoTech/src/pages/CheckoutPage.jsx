@@ -1,8 +1,16 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import ItemCheckout from '../components/Checkout/ItemCheckout';
 import ShippingInformation from '../components/Checkout/ShippingInformation';
 import CardInformation from '../components/Checkout/CardInformation';
 import SummaryItem from '../components/ShoppingCart/SummaryItem';
+import {
+  verifyEmpty,
+  verifyEmail,
+  verifyPhone,
+  verifyCardNumber,
+  verifyCVC,
+  verifyExpiryDate
+} from '../components/Checkout/CheckoutValidations';
 
 import { useCart } from "../hooks/useCart";
 
@@ -11,6 +19,42 @@ import { Link } from 'react-router-dom';
 
 const CheckoutPage = () => {
   const { cart, clearCart } = useCart();
+
+  const [shippingData, setShippingData] = useState({
+    email: "",
+    name: "",
+    lastName: "",
+    address: "",
+    province: "",
+    city: "",
+    region: "",
+    phone: "",
+  })
+
+  const [cardData, setCardData] = useState({
+    cardNumber: "",
+    expiryDate: "",
+    cvc: "",
+    cardName: "",
+  })
+
+  const [shippingDataErrors, setShippingDataErrors] = useState({
+    emailError: "",
+    nameError: "",
+    lastNameError: "",
+    addressError: "",
+    provinceError: "",
+    cityError: "",
+    regionError: "",
+    phoneError: "",
+  })
+
+  const [cardDataErrors, setCardDataErrors] = useState({
+    cardNumberError: "",
+    expiryDateError: "",
+    cvcError: "",
+    cardNameError: "",
+  })
   
   const subtotal = useMemo(() => 
     cart.reduce((acc, item) => acc + item.price * item.quantity, 0), 
@@ -22,47 +66,54 @@ const CheckoutPage = () => {
 
   const total = subtotal + envio + iva;
 
-  const handleCheckoutPageClick = () => {
-    var flag = true
-    if(document.getElementById('email').value.trim() ===""){
-      flag = false
-    }
-    if(document.getElementById('Nombre').value.trim() ===""){
-      flag = false
+  const verifyInputs = () => {
+    const emailError = verifyEmpty(shippingData.email, "Correo Electrónico") || verifyEmail(shippingData.email);
+    const nameError = verifyEmpty(shippingData.name, "Nombre");
+    const lastNameError = verifyEmpty(shippingData.lastName, "Apellido");
+    const addressError = verifyEmpty(shippingData.address, "Dirección");
+    const provinceError = verifyEmpty(shippingData.province, "Provincia");
+    const cityError = verifyEmpty(shippingData.city, "Ciudad");
+    const phoneError = verifyPhone(shippingData.phone);
 
-    }
-    if(document.getElementById('Apellido').value.trim() ===""){
-      flag = false
-    }
-    if(document.getElementById('Direction').value.trim() ===""){
-      flag = false
-    }
-    if(document.getElementById('Provincia').value.trim() ===""){
-      flag = false
-    }
-    if(document.getElementById('Ciudad').value.trim() ===""){
-      flag = false
-    }
-    if(document.getElementById('Region').value.trim() ===""){
-      flag = false
-    }
-    if(document.getElementById('Telefono').value.trim() ===""){
-      flag = false
-    }
-    if(document.getElementById('numCard').value.trim() ===""){
-      flag = false
-    }
-    if(document.getElementById('expi').value.trim() ===""){
-      flag = false
-    }
-    if(document.getElementById('cvv').value.trim() ===""){
-      flag = false
-    }
-    if(document.getElementById('nameCard').value.trim() ===""){
-      flag = false
-    }
-    if(flag){
-      document.getElementById('FinCompra').showModal()
+    const newShippingDataErrors = ({
+      emailError: emailError,
+      nameError: nameError,
+      lastNameError: lastNameError,
+      addressError: addressError,
+      provinceError: provinceError,
+      cityError: cityError,
+      regionError: "", // ? delete ?
+      phoneError: phoneError,
+    })
+
+    setShippingDataErrors(newShippingDataErrors);
+
+    const cardNumberError = verifyEmpty(cardData.cardNumber, "Número de Tarjeta") || verifyCardNumber(cardData.cardNumber);
+    const expiryDateError = verifyEmpty(cardData.expiryDate, "Fecha de Vencimiento") || verifyExpiryDate(cardData.expiryDate);
+    const cvcError = verifyEmpty(cardData.cvc, "Código de Seguridad") || verifyCVC(cardData.cvc);
+    const cardNameError = verifyEmpty(cardData.cardName, "Nombre en la Tarjeta");
+
+    const newCardDataErrors = ({
+      cardNumberError: cardNumberError,
+      expiryDateError: expiryDateError,
+      cvcError: cvcError,
+      cardNameError: cardNameError
+    })
+
+    setCardDataErrors(newCardDataErrors);
+
+    const isValid = Object.values(newShippingDataErrors).every((error) => error === "")
+    && Object.values(newCardDataErrors).every((error) => error === "");
+
+    return isValid;
+
+  }
+
+  const handleCheckoutPageClick = () => {
+    if (verifyInputs()) {
+      console.log("Data is valid")
+    } else {
+      console.log("Data is invalid")
     }
   };
 
@@ -72,12 +123,20 @@ const CheckoutPage = () => {
         <div className="space-y-6">
           <div className="bg-Card_color p-6 rounded-lg">
             <h1 className="text-2xl font-semibold mb-4">Dirección de Entrega</h1>
-            <ShippingInformation />
+            <ShippingInformation
+              shippingData={shippingData}
+              setShippingData={setShippingData}
+              shippingErrors={shippingDataErrors}
+            />
           </div>
           
           <div className="bg-Card_color p-6 rounded-lg">
             <h1 className="text-2xl font-semibold mb-4">Tarjeta</h1>
-            <CardInformation />
+            <CardInformation
+              cardData={cardData}
+              setCardData={setCardData}
+              cardDataErrors={cardDataErrors}
+            />
           </div>
         </div>
         
