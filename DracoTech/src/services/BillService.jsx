@@ -47,12 +47,9 @@ const BillService = {
             const response = await axios.post(
                 "http://localhost:3001/bill/processPurchase", value
             );
-
-            if (!response.ok) {
+            if (response.status != 200) {
                 throw new Error("Error al procesar compra");
             }
-            
-            console.log("Succeded")
             return "SUCCESS"
         } catch(error) {
             return error;

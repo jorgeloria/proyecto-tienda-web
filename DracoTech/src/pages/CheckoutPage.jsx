@@ -113,12 +113,35 @@ const CheckoutPage = () => {
   const handleCheckoutPageClick = async () => {
     if (verifyInputs()) {
       console.log("Data is valid")
-      await BillService.processTransaction({
+      const response = await BillService.processTransaction({
         card: cardData.cardNumber.replaceAll(" ", ""),
         expirationDate: cardData.expiryDate.replaceAll(" ", ""),
         cvc: cardData.cvc,
         currency: "colones"
       })
+      if(response.status == 200){
+        let products = [];
+        cart.map( p => {
+          products.push({id: p.id, quantity: p.quantity})
+        })
+        const shippingDataObject = {
+          email: shippingData.email,
+          name: shippingData.name,
+          lastName: shippingData.lastName,
+          direction: shippingData.address,
+          province: shippingData.province,
+          city: shippingData.city,
+          region: shippingData.region,
+          phone: shippingData.phone.replaceAll("-","").replaceAll(" ",""),
+        }
+        const reqObj = { userId: localStorage.getItem("uid"), products: products ,shipData: shippingDataObject };
+        const response = await BillService.processPurchase(reqObj)
+        if(response == "SUCCESS"){
+          document.getElementById('FinCompra').showModal();
+        }else{
+          //TODO: modal de error
+        }
+      }
     } else {
       console.log("Data is invalid")
     }
