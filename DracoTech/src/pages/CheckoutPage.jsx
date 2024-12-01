@@ -20,6 +20,8 @@ import { Link } from 'react-router-dom';
 
 const CheckoutPage = () => {
   const { cart, clearCart } = useCart();
+  
+  const [ isLoading, setIsLoading ] = useState(false)
 
   const [shippingData, setShippingData] = useState({
     email: "",
@@ -111,6 +113,7 @@ const CheckoutPage = () => {
   }
 
   const handleCheckoutPageClick = async () => {
+    setIsLoading(true);
     if (verifyInputs()) {
       console.log("Data is valid")
       const response = await BillService.processTransaction({
@@ -145,6 +148,7 @@ const CheckoutPage = () => {
     } else {
       console.log("Data is invalid")
     }
+    setIsLoading(false);
   };
 
   return (
@@ -190,10 +194,16 @@ const CheckoutPage = () => {
               <SummaryItem name={"Total"} value={total} />
             </tbody>
           </table>
-          <button className="btn bg-Tertiary_color hover:bg-Tertiary_color text-white w-full border-none "
-          onClick={handleCheckoutPageClick}>
-            Pagar
-          </button>
+          { !isLoading &&
+              <button className="btn bg-Tertiary_color hover:bg-Tertiary_color text-white w-full border-none "
+                onClick={handleCheckoutPageClick}>
+                Pagar
+              </button>
+          }
+          { isLoading &&
+              <img className="loading"/>
+          }
+
           <dialog id="FinCompra" className="modal">
             <div className="modal-box">
               <h1 className="font-bold text-lg">Compra finalizada</h1>
