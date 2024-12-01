@@ -75,13 +75,17 @@ const processTransaction = (tx: Transaction): ResponsePayload => {
 };
 
 // Server setup
+const cors = require('cors')
 const app = express();
+app.use(cors());
 app.use(bodyParser.json());
 
 // Endpoint to process transactions
 app.post("/transaction", (req: Request, res: Response) => {
+  console.log("Transaction!")
   try {
-    const tx: Transaction = req.body;
+    console.log(req.body)
+    const tx: Transaction = req.body.transaction;
     const response = processTransaction(tx);
     res.status(200).json(response);
   } catch (error: any) {
@@ -89,6 +93,7 @@ app.post("/transaction", (req: Request, res: Response) => {
       approved: false,
       message: error.message,
     });
+    console.log("Error: " + error)
   }
 });
 
