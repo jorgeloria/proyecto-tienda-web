@@ -272,8 +272,12 @@ const handleLogout = async () => {
                         <Link to={"/Account"}>Perfil</Link>
                       </li>
                       <li>
+                        <Link to={"/PurchaseHistory"} >Historial de compras</Link>
+                      </li>
+                      <li>
                         <Link to={""} onClick={handleLogout}>Cerrar Sesión</Link>
                       </li>
+                      
                     </>
                   ) : (
                     <>
