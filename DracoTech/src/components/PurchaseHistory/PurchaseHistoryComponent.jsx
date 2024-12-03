@@ -1,74 +1,83 @@
-import React from "react"
+import React, { useState, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
-import styles from "./PurchaseHistoryComponent.module.css"
-
+import styles from "./PurchaseHistoryComponent.module.css";
+import BillService from "../../services/BillService";
 
 const PurchaseHistoryComponent = () => {
 
-    const compras = [
-        {
-            "factura_id" : "KM323423423-132",
-            "productos"  : [],
-            "productos_desc" : "XIAOMI A22I 21.5” - 6MS - 75HZ - 1920X1080",
-            "monto": "₡339,000",
-            "cantidad": "2",
-            "impuesto": "₡50,000"
-        },
-        {
-            "factura_id" : "XP8548881-51555",
-            "productos"  : [],
-            "productos_desc" : "CORSAIR HS80 RGB USB - CARBON",
-            "monto": "₡449,500",
-            "cantidad": "2",
-            "impuesto": "₡80,000"
-        },
-        {
-            "factura_id" : "LJ96589-6112",
-            "productos"  : [],
-            "productos_desc" : "PLAYSTATION 5 (PS5) SLIM EDICION DISCO",
-            "monto": "₡325,500",
-            "cantidad": "2",
-            "impuesto": "₡70,000"
-        },
-    ];
+const navigate = useNavigate();
+
+  const handleClick = (id) => {
+    navigate("/BillPage", {
+      state: {
+        id,
+      },
+    });
+  };
+
+    const [bills, setBills] = useState([]);
+
+    useEffect(() => {
+        const fetchBills = async () => {
+            try {
+                const user_id = localStorage.getItem("uid")
+                const data = await BillService.getBills(user_id);
+                setBills(data);
+            } catch (err) {
+                console.error(err);
+                //setError("Error al cargar las facturas");
+            }
+        };
+
+        fetchBills();
+    }, []);
+
+    console.log(bills);
 
     return (
-        <div className={styles.purchaseHistoryMain} >
-
-        <div className="grid grid-cols-1" >
-            <div className="row" >
-                <h1 className={styles.purchaseHistoryHead} >Historial de compras</h1>
+        <div >
+            <div className="grid grid-cols-1">
+                <div className="flex justify-center pt-10 pb-10">
+                    <h1 className= "text-4xl">Historial de compras</h1>
+                </div>
+            </div>
+            <div className="flex justify-center pb-10">
+                <div className="overflow-x-auto">
+                    <table className="table bg-Footer_color">
+                        <thead>
+                            <tr>
+                                <th># de Factura</th>
+                                <th>Fecha</th>
+                                <th>Monto</th>
+                                <th>Detalles</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {bills.map((compra) => (
+                                <tr key={compra.id}>
+                                    <td>{compra.id}</td>
+                                    <td>{new Date(compra.date).toLocaleDateString('es-CR', { 
+                                        day: '2-digit', 
+                                        month: '2-digit', 
+                                        year: 'numeric' 
+                                    })}</td>
+                                    <td>{compra.total.toLocaleString('es-CR', {
+                                        style: 'currency',
+                                        currency: 'CRC',})}</td>
+                                    <td>
+                                        <button onClick={() => handleClick(compra.id)}> 
+                                            <box-icon name='detail' type='solid' color='#ffffff' ></box-icon>
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2" >
-            <div className="row">
-                <table className="table">
-                    <thead>
-                        <tr>
-                            <th># de Factura</th>
-                            <th>Productos</th>
-                            <th>Monto</th>
-                            <th>Cantidad</th>
-                            <th>Impuesto</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {compras.map((compra,i) => {
-                            return (<tr>
-                                        <td>{compra.factura_id}</td>
-                                        <td>{compra.productos_desc}</td>
-                                        <td>{compra.monto}</td>
-                                        <td>{compra.cantidad}</td>
-                                        <td>{compra.impuesto}</td>
-                                    </tr>)
-                        })}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
     );
-}
+};
 
 export default PurchaseHistoryComponent;

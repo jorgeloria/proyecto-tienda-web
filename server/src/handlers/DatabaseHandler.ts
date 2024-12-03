@@ -54,7 +54,17 @@ export class DatabaseHandler {
 				bill.created_at,
 				bill.total,
 				bill.usuario_id,
-				[]
+				[],
+				new ShipData(
+					bill.email,
+					bill.name,
+					bill.lastName,
+					bill.direccion,
+					bill.province,
+					bill.city,
+					bill.region,
+					bill.phone
+				)
 			);
 		});
 	}
@@ -81,7 +91,17 @@ export class DatabaseHandler {
 			bill.created_at,
 			bill.total,
 			bill.usuario_id,
-			bill.factura_producto
+			bill.factura_producto,
+			new ShipData(
+				bill.correo,
+				bill.nombre_usuario,
+				bill.apellido_usuario,
+				bill.direccion,
+				bill.provincia,
+				bill.ciudad,
+				bill.region,
+				bill.telefono
+			)
 		);
 	}
 
@@ -98,7 +118,7 @@ export class DatabaseHandler {
 			)
 			.select()
 		;
-		if (responseObj.error) {throw responseObj.error;}
+		if (responseObj.error) { console.log(responseObj.error); throw responseObj.error;}
 		return responseObj.data[0].id;
 	}
 

@@ -53,7 +53,8 @@ export class DataAccess {
 			new Date(),
 			0,
 			userId,
-			prods
+			prods,
+			shipData
 		)
 
 		try {
