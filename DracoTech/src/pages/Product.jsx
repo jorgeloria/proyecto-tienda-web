@@ -34,7 +34,7 @@ const Product = () => {
         imageNorm={gottenProduct.thumbnail || fallbackData}
         price={gottenProduct.price || fallbackData}
         description={gottenProduct.description || fallbackData}
-        stock={"inStock" || fallbackData}
+        stock={gottenProduct.stock || fallbackData}
         details={"M" || fallbackData}
       />
     </>

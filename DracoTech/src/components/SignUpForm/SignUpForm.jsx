@@ -10,6 +10,9 @@ import "react-toastify/dist/ReactToastify.css";
 import styles from './SignUpForm.module.css'
 import { useState } from "react";
 import RegisterUser from "../../services/RegisterService";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+
+import LoginService from "../../services/LoginService";
 
 const verifyFullName = (name) => {
     if (name.length === 0) {
@@ -50,6 +53,8 @@ const comparePasswords = (password, repeatedPassword) => {
 }
 
 const SignUpForm = () => {
+    const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -100,11 +105,17 @@ const SignUpForm = () => {
                     position: 'bottom-right',
                     theme: 'dark'
                 })
+                await LoginService.doLogin({"email": formData.email,"password": formData.password});
+                
+                navigate("/"
+                );
+                navigate(0);
             }
         } else {
             // do nothing?
             console.log("Hay errores en el formulario")
         }
+        
     }
 
     return(
