@@ -40,8 +40,15 @@ const BillService = {
             })
             console.log("Response from backend: " + JSON.stringify(response, null, 2))
             return response
-        }catch(e){
-            console.log("Error:", JSON.stringify(error.response.data.message,null,2))
+        }catch(error){
+            if (error.response) {
+                console.log("Backend responded with an error:", JSON.stringify(error.response.data, null, 2));
+                return error.response.data.message;
+            } else {
+                console.log("An error occurred:", error.message);
+                return error.message;
+            }
+            return error.response.data.message;
         }
     },
 

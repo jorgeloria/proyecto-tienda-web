@@ -55,7 +55,7 @@ export default function CardInformation({cardData, setCardData, cardDataErrors})
 					onChange={(e) => setCardData({...cardData, cvc: e.target.value.replace(/\D/g, "")})}
 					required
 					placeholder={"CVC"}
-					maxLength={3}
+					maxLength={4}
 				/>
 				<CheckoutField
 					id={"cardName"}

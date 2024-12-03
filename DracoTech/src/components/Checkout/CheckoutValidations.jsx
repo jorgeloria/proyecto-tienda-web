@@ -1,6 +1,6 @@
 const phoneFormat = "8888 - 8888";
 const cardNumberFormat = "1234 1234 1234 1234";
-const cvcFormat = "123";
+const cvcFormat = "1234";
 const expiryDateFormat = "MM / YY";
 
 const verifyEmpty = (value, name) => {
@@ -34,7 +34,7 @@ const verifyCardNumber = (cardNumber) => {
 }
 
 const verifyCVC = (cvc) => {
-  if (cvc.length !== cvcFormat.length) {
+  if (cvc.length <= cvcFormat.length-2) {
     return "Tu código de seguridad está incompleto.";
   }
   return "";

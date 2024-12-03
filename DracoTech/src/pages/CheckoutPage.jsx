@@ -23,6 +23,8 @@ const CheckoutPage = () => {
   
   const [ isLoading, setIsLoading ] = useState(false)
 
+  const [ lastError, setLastError ] = useState()
+
   const [shippingData, setShippingData] = useState({
     email: "",
     name: "",
@@ -122,7 +124,7 @@ const CheckoutPage = () => {
         cvc: cardData.cvc,
         currency: "colones"
       })
-      if(response.status == 200){
+      if(response["status"] == 200){
         let products = [];
         cart.map( p => {
           products.push({id: p.id, quantity: p.quantity})
@@ -144,6 +146,9 @@ const CheckoutPage = () => {
         }else{
           document.getElementById('Error').showModal();
         }
+      } else {
+        setLastError(response)
+        document.getElementById('Error').showModal();
       }
     } else {
       console.log("Data is invalid")
@@ -219,12 +224,10 @@ const CheckoutPage = () => {
           <dialog id="Error" className="modal">
             <div className="modal-box bg-Card_color">
               <h1 className="font-bold text-lg">Error al realizar la compra</h1>
-              <p className="py-4">No se puedo realizar la compra</p>
+              <p className="py-4">{lastError}</p>
               <div className="modal-action">
                 <form method="dialog">
-                <Link to="/">
-                <button className="btn bg-Tertiary_color hover:bg-Tertiary_color text-white w-full border-none" onClick={() => clearCart()}>Continuar</button>
-                </Link>
+                  <button className="btn bg-Tertiary_color hover:bg-Tertiary_color text-white w-full border-none">Continuar</button>
                 </form>
               </div>
             </div>

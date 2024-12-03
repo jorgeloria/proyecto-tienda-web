@@ -15,7 +15,19 @@ interface ResponsePayload {
 }
 
 // List of valid BINs
-const BankBINs = ["123456", "654321"]; // Example of valid BINs
+const BankBINs = [
+  "400943",
+  "401630",
+  "401631",
+  "401632",
+  "510714",
+  "504627",
+  "510209",
+  "510980",
+  "377713",
+  "377712",
+  "377711"
+]; // Example of valid BINs
 
 // Validation functions
 const validateBIN = (bin: string): boolean => BankBINs.includes(bin);
